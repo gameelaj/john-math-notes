@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simultaneous Equations | John's Math Notes</title>
+  <meta name="description" content="Solve simultaneous equations using elimination and substitution methods, including non-linear systems.">
+  <meta name="keywords" content="simultaneous equations, simultaneous, equations, elimination method, substitution method, linear equations, non-linear simultaneous, two variables, system of equations, algebra, paper 1H, paper 2H, IGCSE, Edexcel, solve for x and y, eliminate, substitute, quadratic simultaneous">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.65;
+      padding: 20px 16px 60px;
+      font-size: 16px;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    .back-link {
+      display: inline-block;
+      color: #64748b;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 24px;
+      padding: 6px 0;
+    }
+    .back-link:hover { color: #0f172a; }
+
+    .title-block {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin-bottom: 20px;
+      border: 1px solid #e2e8f0;
+    }
+    h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+    .meta { color: #64748b; font-size: 14px; }
+    .meta span { display: inline-block; margin-right: 12px; }
+    .syllabus {
+      display: inline-block;
+      background: #f1f5f9;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #475569;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 36px 0 16px;
+      color: #0f172a;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 24px 0 12px;
+      color: #0f172a;
+    }
+    p { margin-bottom: 12px; }
+
+    /* Concept box */
+    .concept-box {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 18px 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+    .concept-box strong { color: #1e40af; }
+
+    /* Method steps */
+    .step {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #0f172a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .step-body { flex: 1; }
+    .step-title { font-weight: 600; margin-bottom: 4px; font-size: 16px; }
+    .step-desc { color: #475569; font-size: 15px; }
+
+    /* Color-coded inline tags */
+    .action { color: #16a34a; font-weight: 600; }
+    .calc { color: #2563eb; font-weight: 600; }
+    .warn { color: #ea580c; font-weight: 600; }
+    .rule { color: #9333ea; font-weight: 600; }
+
+    /* Math line */
+    .math {
+      font-family: 'Courier New', monospace;
+      background: #f1f5f9;
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin: 6px 0;
+      font-size: 15px;
+      display: block;
+      overflow-x: auto;
+    }
+    .math-blue { color: #2563eb; }
+    .math-green { color: #16a34a; }
+    .math-orange { color: #ea580c; }
+    .math-purple { color: #9333ea; }
+
+    /* Example boxes */
+    .example {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      border-left: 5px solid #cbd5e1;
+    }
+    .example.easy { border-left-color: #16a34a; }
+    .example.medium { border-left-color: #eab308; }
+    .example.hard { border-left-color: #dc2626; }
+    .example-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .example.easy .example-label { background: #dcfce7; color: #166534; }
+    .example.medium .example-label { background: #fef9c3; color: #854d0e; }
+    .example.hard .example-label { background: #fee2e2; color: #991b1b; }
+    .example-title { font-weight: 600; font-size: 16px; margin-bottom: 12px; }
+    .work { margin: 8px 0; }
+    .work-line {
+      padding: 4px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 15px;
+    }
+    .work-comment {
+      color: #64748b;
+      font-style: italic;
+      font-family: -apple-system, sans-serif;
+      font-size: 14px;
+      padding: 2px 0 2px 16px;
+    }
+    .answer-box {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 8px;
+      font-weight: 600;
+      color: #166534;
+    }
+
+    /* Mistakes box */
+    .mistakes {
+      background: #fdf2f8;
+      border: 1px solid #f9a8d4;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .mistakes h3 { color: #9d174d; margin-top: 0; }
+    .mistake-item {
+      padding: 10px 0;
+      border-bottom: 1px dashed #f9a8d4;
+    }
+    .mistake-item:last-child { border-bottom: none; }
+    .mistake-item strong { color: #9d174d; }
+
+    /* Recap */
+    .recap {
+      background: #fef3c7;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 32px;
+      border: 1px solid #fcd34d;
+    }
+    .recap h3 { color: #78350f; margin-top: 0; }
+    .recap ul { padding-left: 20px; }
+    .recap li { margin-bottom: 8px; color: #422006; }
+
+    /* Memory hook */
+    .hook {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin: 16px 0;
+      font-size: 15px;
+      color: #78350f;
+    }
+    .hook strong { color: #78350f; }
+
+    /* Section divider */
+    .divider {
+      border: none;
+      height: 1px;
+      background: #e2e8f0;
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-link">← Back to all notes</a>
+
+    <div class="title-block">
+      <h1>Simultaneous Equations: Elimination &amp; Substitution</h1>
+      <div class="meta">
+        <span>📅 30 April 2026</span>
+        <span class="syllabus">IGCSE Edexcel · Algebra · Paper 1H &amp; 2H</span>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <p><strong>What's the idea?</strong> A simultaneous equation is when you have two equations with two unknowns (usually x and y). One equation alone has infinite solutions — but two equations together pin down one specific pair of values that works for both.</p>
+      <p style="margin-bottom: 0;"><strong>Why it matters:</strong> Almost every "real-world" maths problem (mixing prices, ages, rates, intersections of lines) becomes a simultaneous equation. Master this and you unlock half of Paper 2H.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>📐 Method 1: Elimination</h2>
+
+    <p>The big idea: <strong>get rid of one variable</strong> by adding or subtracting the two equations. Whatever's left is a normal one-variable equation you already know how to solve.</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title"><span class="action">Reorder</span> so the variables line up</div>
+        <div class="step-desc">Both equations should have x on one side, y next to it, and the number on the other side. Same column = same variable.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title"><span class="action">Make</span> the coefficients of x <strong>or</strong> y the same</div>
+        <div class="step-desc">Pick the variable that's easier to match. Multiply one (or both) equations by a number until the coefficients match. <span class="warn">Multiply <em>every</em> term, not just one!</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title"><span class="action">Add or subtract</span> the equations</div>
+        <div class="step-desc"><span class="rule">SSS = Same Sign Subtract.</span> If the matching coefficients have the <em>same</em> sign (both +3y or both −3y) → <strong>subtract</strong>. If they have <em>different</em> signs (+3y and −3y) → <strong>add</strong>.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title"><span class="calc">Solve</span> the one-variable equation</div>
+        <div class="step-desc">After step 3, one variable disappears. You're left with something like 5x = 20 → solve normally.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-title"><span class="calc">Substitute back</span> to find the other variable</div>
+        <div class="step-desc">Plug the value you found into either original equation. Pick the simpler one.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <div class="step-title"><span class="action">Check</span> by plugging both values into the other equation</div>
+        <div class="step-desc">30 seconds of checking saves you from losing 4 marks. Always do it.</div>
+      </div>
+    </div>
+
+    <div class="hook">
+      💡 <strong>Memory hook:</strong> "<strong>S</strong>ame <strong>S</strong>igns <strong>S</strong>ubtract" (SSS). If the signs match, subtract. If they're different, add. Whisper "SSS" before step 3 every time.
+    </div>
+
+    <h3>Worked Examples — Elimination</h3>
+
+    <div class="example easy">
+      <span class="example-label">Easy</span>
+      <div class="example-title">Solve: 2x + y = 7 and 3x − y = 8</div>
+      <div class="work">
+        <div class="work-line">(1)  2x + y = 7</div>
+        <div class="work-line">(2)  3x − y = 8</div>
+        <div class="work-comment">Already lined up. Look at y: coefficients are +1 and −1.</div>
+        <div class="work-comment">Different signs → ADD the equations.</div>
+        <div class="work-line math-blue">(1) + (2):  5x = 15</div>
+        <div class="work-line math-blue">x = 3</div>
+        <div class="work-comment">Substitute x = 3 into (1):</div>
+        <div class="work-line math-blue">2(3) + y = 7  →  6 + y = 7  →  y = 1</div>
+        <div class="work-comment">Check in (2): 3(3) − 1 = 9 − 1 = 8 ✓</div>
+      </div>
+      <div class="answer-box">x = 3,  y = 1</div>
+    </div>
+
+    <div class="example easy">
+      <span class="example-label">Easy</span>
+      <div class="example-title">Solve: 4x + 3y = 18 and 4x − y = 6</div>
+      <div class="work">
+        <div class="work-comment">Coefficients of x are both +4 — same sign → SUBTRACT.</div>
+        <div class="work-line math-blue">(1) − (2):  (4x − 4x) + (3y − (−y)) = 18 − 6</div>
+        <div class="work-line math-blue">          0 + 4y = 12</div>
+        <div class="work-line math-blue">          y = 3</div>
+        <div class="work-comment">Sub y = 3 into (2): 4x − 3 = 6 → 4x = 9 → x = 9/4</div>
+        <div class="work-comment"><span class="warn">Watch the double negative:</span> 3y − (−y) = 3y + y = 4y. Don't write 2y!</div>
+      </div>
+      <div class="answer-box">x = 9/4 (or 2.25),  y = 3</div>
+    </div>
+
+    <div class="example medium">
+      <span class="example-label">Medium</span>
+      <div class="example-title">Solve: 3x + 2y = 16 and 5x − 3y = 14</div>
+      <div class="work">
+        <div class="work-comment">Coefficients don't match. Make y match: multiply (1) by 3 and (2) by 2.</div>
+        <div class="work-line math-blue">(1) × 3:   9x + 6y = 48</div>
+        <div class="work-line math-blue">(2) × 2:  10x − 6y = 28</div>
+        <div class="work-comment">Now y coefficients are +6 and −6. Different signs → ADD.</div>
+        <div class="work-line math-blue">          19x = 76</div>
+        <div class="work-line math-blue">          x = 4</div>
+        <div class="work-comment">Sub x = 4 into (1): 3(4) + 2y = 16 → 12 + 2y = 16 → y = 2</div>
+        <div class="work-comment">Check in (2): 5(4) − 3(2) = 20 − 6 = 14 ✓</div>
+      </div>
+      <div class="answer-box">x = 4,  y = 2</div>
+    </div>
+
+    <div class="example hard">
+      <span class="example-label">Hard — Exam style</span>
+      <div class="example-title">A shop sells 4 pens and 3 notebooks for £11. It sells 6 pens and 2 notebooks for £10. Find the price of each.</div>
+      <div class="work">
+        <div class="work-comment">Let p = pen price, n = notebook price.</div>
+        <div class="work-line">(1)  4p + 3n = 11</div>
+        <div class="work-line">(2)  6p + 2n = 10</div>
+        <div class="work-comment">Match n: multiply (1) by 2, (2) by 3.</div>
+        <div class="work-line math-blue">(1) × 2:    8p + 6n = 22</div>
+        <div class="work-line math-blue">(2) × 3:   18p + 6n = 30</div>
+        <div class="work-comment">Same sign → SUBTRACT.</div>
+        <div class="work-line math-blue">(2) − (1):  10p = 8  →  p = 0.80</div>
+        <div class="work-comment">Sub p = 0.80 into (1): 4(0.80) + 3n = 11 → 3.20 + 3n = 11 → 3n = 7.80 → n = 2.60</div>
+        <div class="work-comment">Check in (2): 6(0.80) + 2(2.60) = 4.80 + 5.20 = 10 ✓</div>
+      </div>
+      <div class="answer-box">Pen = £0.80,  Notebook = £2.60</div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>🔄 Method 2: Substitution</h2>
+
+    <p>The big idea: <strong>rearrange one equation to make x or y the subject</strong>, then plug that expression into the other equation. You replace one letter with an expression — substitution!</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title"><span class="action">Pick</span> the easier equation to rearrange</div>
+        <div class="step-desc">Look for a variable with coefficient 1 (or −1) — it rearranges cleanly with no fractions.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title"><span class="action">Rearrange</span> to make x or y the subject</div>
+        <div class="step-desc">e.g. y = 2x + 3 (or x = ...). Now you have an expression for that variable.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title"><span class="calc">Substitute</span> into the OTHER equation</div>
+        <div class="step-desc"><span class="warn">Don't substitute back into the same equation</span> — you'll get 0 = 0, which is useless. Always sub into the equation you didn't rearrange.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title"><span class="calc">Solve</span> the resulting one-variable equation</div>
+        <div class="step-desc">Expand brackets carefully, collect like terms, solve.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-title"><span class="calc">Substitute back</span> to find the other variable</div>
+        <div class="step-desc">Use your rearranged expression from step 2 — that's the quickest way.</div>
+      </div>
+    </div>
+
+    <h3>Worked Examples — Substitution (Linear)</h3>
+
+    <div class="example easy">
+      <span class="example-label">Easy</span>
+      <div class="example-title">Solve: y = 3x − 1 and 2x + y = 9</div>
+      <div class="work">
+        <div class="work-comment">Equation (1) is already rearranged: y = 3x − 1. Sub into (2).</div>
+        <div class="work-line math-blue">2x + (3x − 1) = 9</div>
+        <div class="work-line math-blue">5x − 1 = 9</div>
+        <div class="work-line math-blue">5x = 10  →  x = 2</div>
+        <div class="work-comment">Sub x = 2 into y = 3x − 1:  y = 3(2) − 1 = 5</div>
+        <div class="work-comment">Check in (2): 2(2) + 5 = 9 ✓</div>
+      </div>
+      <div class="answer-box">x = 2,  y = 5</div>
+    </div>
+
+    <div class="example medium">
+      <span class="example-label">Medium</span>
+      <div class="example-title">Solve: x + 2y = 11 and 3x − y = 5</div>
+      <div class="work">
+        <div class="work-comment">Equation (1) has x with coefficient 1 — easy to rearrange.</div>
+        <div class="work-line math-blue">From (1):  x = 11 − 2y</div>
+        <div class="work-comment">Sub into (2):</div>
+        <div class="work-line math-blue">3(11 − 2y) − y = 5</div>
+        <div class="work-line math-blue">33 − 6y − y = 5</div>
+        <div class="work-line math-blue">33 − 7y = 5  →  −7y = −28  →  y = 4</div>
+        <div class="work-comment">Sub y = 4 back: x = 11 − 2(4) = 3</div>
+        <div class="work-comment"><span class="warn">Watch:</span> when expanding 3(11 − 2y), the −2y becomes −6y. Easy place to drop a sign.</div>
+      </div>
+      <div class="answer-box">x = 3,  y = 4</div>
+    </div>
+
+    <hr class="divider">
+
+    <h3>🚀 Why substitution is more powerful</h3>
+
+    <div class="concept-box" style="background: #f0fdf4; border-left-color: #16a34a;">
+      <p><strong>Here's the cool part:</strong> elimination only works when both equations are linear (just x and y, no x² or xy or anything fancy). But substitution works on <strong>non-linear</strong> systems too — like when one equation is a curve.</p>
+      <p style="margin-bottom: 0;">This is huge for IGCSE: questions about a line meeting a circle, or a line meeting a quadratic curve, are <span class="rule">guaranteed</span> Paper 2H material. Elimination can't do these. Substitution can.</p>
+    </div>
+
+    <h3>Worked Examples — Substitution (Non-linear)</h3>
+
+    <div class="example medium">
+      <span class="example-label">Medium</span>
+      <div class="example-title">Solve: y = x + 1 and y = x²  − 1</div>
+      <div class="work">
+        <div class="work-comment">Both equations equal y, so set them equal:</div>
+        <div class="work-line math-blue">x² − 1 = x + 1</div>
+        <div class="work-line math-blue">x² − x − 2 = 0</div>
+        <div class="work-line math-blue">(x − 2)(x + 1) = 0</div>
+        <div class="work-line math-blue">x = 2  or  x = −1</div>
+        <div class="work-comment"><span class="warn">Two x-values means two solutions</span> — the line crosses the curve at two points.</div>
+        <div class="work-comment">When x = 2: y = 2 + 1 = 3</div>
+        <div class="work-comment">When x = −1: y = −1 + 1 = 0</div>
+      </div>
+      <div class="answer-box">(2, 3)  and  (−1, 0)</div>
+    </div>
+
+    <div class="example hard">
+      <span class="example-label">Hard — Exam style</span>
+      <div class="example-title">Solve: x² + y² = 25 and y = x + 1</div>
+      <div class="work">
+        <div class="work-comment">This is a circle (radius 5) meeting a straight line. Substitute y = x + 1 into the circle equation:</div>
+        <div class="work-line math-blue">x² + (x + 1)² = 25</div>
+        <div class="work-comment"><span class="warn">Expand carefully:</span> (x + 1)² = x² + 2x + 1, NOT x² + 1.</div>
+        <div class="work-line math-blue">x² + x² + 2x + 1 = 25</div>
+        <div class="work-line math-blue">2x² + 2x − 24 = 0</div>
+        <div class="work-line math-blue">x² + x − 12 = 0    (divided by 2)</div>
+        <div class="work-line math-blue">(x + 4)(x − 3) = 0</div>
+        <div class="work-line math-blue">x = −4  or  x = 3</div>
+        <div class="work-comment">Sub each into y = x + 1:</div>
+        <div class="work-comment">x = −4 → y = −3.  x = 3 → y = 4.</div>
+        <div class="work-comment">Check first pair: (−4)² + (−3)² = 16 + 9 = 25 ✓</div>
+      </div>
+      <div class="answer-box">(−4, −3)  and  (3, 4)</div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="mistakes">
+      <h3>⚠️ Common Mistakes John Should Watch For</h3>
+      <div class="mistake-item">
+        <strong>1. Forgetting to multiply EVERY term.</strong> If you multiply equation (1) by 3, every single term gets ×3, including the number on the right side. Easy 2 marks lost.
+      </div>
+      <div class="mistake-item">
+        <strong>2. Mixing up add/subtract.</strong> Same Signs Subtract (SSS). Different signs add. Whisper SSS before step 3, every time.
+      </div>
+      <div class="mistake-item">
+        <strong>3. Substituting back into the wrong equation.</strong> When you rearrange equation (1), you must sub into equation (2). Subbing back into (1) just gives 0 = 0 — useless.
+      </div>
+      <div class="mistake-item">
+        <strong>4. Squaring brackets wrong.</strong> (x + 1)² = x² + 2x + 1, NOT x² + 1. Always expand using FOIL or "smile".
+      </div>
+      <div class="mistake-item">
+        <strong>5. Forgetting the second solution in non-linear systems.</strong> A line crossing a curve usually meets it at TWO points. If you only give one (x, y) pair, you lose half the marks.
+      </div>
+    </div>
+
+    <div class="recap">
+      <h3>⚡ Quick Recap (30-second review)</h3>
+      <ul>
+        <li><strong>Elimination:</strong> match coefficients → SSS (Same Signs Subtract, different signs add) → solve → sub back.</li>
+        <li><strong>Substitution:</strong> rearrange one equation → sub into the OTHER → solve → sub back.</li>
+        <li>Multiply <em>every</em> term when scaling an equation.</li>
+        <li>Substitution is the more powerful method — it handles non-linear systems (line + circle, line + curve).</li>
+        <li>Non-linear systems usually have <strong>two</strong> solutions (two intersection points). Always check for both.</li>
+        <li>Always verify your answer by plugging both values into the equation you didn't use to solve.</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>
