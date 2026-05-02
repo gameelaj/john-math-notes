@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upper & Lower Bounds | John's Math Notes</title>
+  <meta name="description" content="How to find upper and lower bounds, write error intervals, and use bounds in perimeter, area, speed, difference and quotient problems — Edexcel IGCSE.">
+  <meta name="keywords" content="upper bound, lower bound, bounds, error interval, limits of accuracy, rounding, significant figures, decimal places, nearest, perimeter, area, speed, distance, time, difference, quotient, IGCSE, Edexcel, Paper 1H, Paper 2H, number, approximation">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap');
+
+    :root {
+      --bg: #fafaf8;
+      --card: #ffffff;
+      --border: #e5e5e0;
+      --text: #1c1c1a;
+      --muted: #6b6b60;
+      --accent: #c2410c; /* warm orange-red, like a pencil */
+
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+
+      --orange: #ea580c;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+
+      --purple: #9333ea;
+      --purple-bg: #faf5ff;
+      --purple-border: #e9d5ff;
+
+      --pink-bg: #fff0f6;
+      --pink-border: #fcc2d7;
+      --pink: #be185d;
+
+      --easy-border: #16a34a;
+      --medium-border: #d97706;
+      --hard-border: #dc2626;
+
+      --teal: #0d9488;
+      --teal-bg: #f0fdfa;
+      --teal-border: #99f6e4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 17px;
+      padding: 24px 16px 72px;
+    }
+
+    .container { max-width: 840px; margin: 0 auto; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 28px;
+      padding: 8px 14px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+    .back-link:hover { background: #fff7ed; }
+
+    /* ── TITLE ── */
+    .title-block {
+      background: linear-gradient(135deg, #7c2d12, #c2410c, #ea580c);
+      color: white;
+      border-radius: 18px;
+      padding: 32px 28px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .title-block::before {
+      content: "±";
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 110px;
+      opacity: 0.1;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .title-block h1 { font-size: 26px; font-weight: 800; margin-bottom: 10px; }
+    .title-meta { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; opacity: 0.9; }
+    .pill { background: rgba(255,255,255,0.18); padding: 4px 12px; border-radius: 999px; font-weight: 700; }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    }
+    .card h2 { font-size: 18px; font-weight: 800; margin-bottom: 14px; }
+    .card h3 { font-size: 15px; font-weight: 700; margin: 18px 0 8px; color: var(--accent); }
+
+    /* ── CONCEPT ── */
+    .concept-box {
+      background: var(--blue-bg);
+      border: 2px solid var(--blue-border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+    .concept-box h2 { color: var(--blue); font-size: 16px; font-weight: 800; margin-bottom: 10px; }
+    .concept-box p { font-size: 16px; color: #1e3a8a; margin-bottom: 8px; }
+    .concept-box p:last-child { margin-bottom: 0; }
+
+    /* ── RULE TABLE ── */
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+    .rule-table th {
+      background: #1c1c1a;
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+    .rule-table th:first-child { border-radius: 8px 0 0 0; }
+    .rule-table th:last-child  { border-radius: 0 8px 0 0; }
+    .rule-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .rule-table tr:last-child td { border-bottom: none; }
+    .rule-table tr:nth-child(even) td { background: #f8f8f6; }
+    .rule-ub { color: var(--hard-border); font-weight: 700; }
+    .rule-lb { color: var(--blue);        font-weight: 700; }
+    .rule-mem { font-size: 12px; color: var(--muted); }
+
+    /* ── STEP COLORS ── */
+    .step { margin-bottom: 14px; padding: 12px 16px; border-radius: 10px; border-left: 4px solid; }
+    .step-green  { background: var(--green-bg);  border-color: var(--green);  color: #14532d; }
+    .step-blue   { background: var(--blue-bg);   border-color: var(--blue);   color: #1e3a8a; }
+    .step-orange { background: var(--orange-bg); border-color: var(--orange); color: #7c2d12; }
+    .step-purple { background: var(--purple-bg); border-color: var(--purple); color: #581c87; }
+    .step-teal   { background: var(--teal-bg);   border-color: var(--teal);   color: #134e4a; }
+
+    .step-label { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; opacity: 0.7; }
+    .step-text  { font-size: 15px; font-weight: 500; }
+
+    /* ── MATH ── */
+    .math-block {
+      font-family: 'DM Mono', monospace;
+      background: #f5f5f3;
+      border: 1px solid #e0e0db;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 14px;
+      color: var(--text);
+      margin: 8px 0;
+      white-space: pre;
+      overflow-x: auto;
+      line-height: 1.95;
+    }
+
+    /* ── EXAMPLES ── */
+    .example { border-radius: 14px; border: 2px solid; margin-bottom: 20px; overflow: hidden; }
+    .example.easy   { border-color: var(--easy-border); }
+    .example.medium { border-color: var(--medium-border); }
+    .example.hard   { border-color: var(--hard-border); }
+
+    .example-header {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 15px;
+      flex-wrap: wrap;
+    }
+    .example.easy   .example-header { background: #f0fdf4; color: var(--easy-border); }
+    .example.medium .example-header { background: #fffbeb; color: var(--medium-border); }
+    .example.hard   .example-header { background: #fef2f2; color: var(--hard-border); }
+
+    .example-badge { padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; }
+    .easy   .example-badge { background: var(--easy-border);   color: white; }
+    .medium .example-badge { background: var(--medium-border); color: white; }
+    .hard   .example-badge { background: var(--hard-border);   color: white; }
+    .context-badge { padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
+
+    .example-body { padding: 20px; background: white; }
+    .example-question { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--text); background: #f8f8f6; border-left: 4px solid #cbd5e1; padding: 12px 14px; border-radius: 6px; }
+
+    .check-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 16px; margin-top: 14px; font-size: 14px; color: #14532d; font-weight: 600; }
+    .check-box span { font-weight: 800; color: var(--green); }
+
+    /* ── CONTEXT SECTIONS ── */
+    .context-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #1c1c1a;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 16px;
+      margin: 28px 0 16px;
+    }
+    .context-icon { font-size: 20px; }
+
+    /* ── MISTAKES / RECAP ── */
+    .mistakes-box {
+      background: var(--pink-bg);
+      border: 2px solid var(--pink-border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+    .mistakes-box h2 { color: var(--pink); font-size: 18px; font-weight: 800; margin-bottom: 14px; }
+    .mistake-item { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+    .mistake-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .mistake-text { font-size: 15px; color: #831843; }
+    .mistake-text strong { color: var(--pink); }
+
+    .recap-box {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border: 2px solid #86efac;
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+    .recap-box h2 { color: var(--green); font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+    .recap-list { list-style: none; }
+    .recap-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #bbf7d0;
+      font-size: 15px;
+      font-weight: 600;
+      color: #14532d;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .recap-list li:last-child { border-bottom: none; }
+    .recap-list li::before { content: "✓"; color: var(--green); font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── PRACTICE ── */
+    .practice-section h2 { font-size: 22px; font-weight: 800; margin-bottom: 6px; color: var(--text); }
+    .practice-section p  { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+
+    .practice-q {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .practice-q summary {
+      padding: 14px 20px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      transition: background 0.15s;
+    }
+    .practice-q summary::-webkit-details-marker { display: none; }
+    .practice-q summary:hover { background: #f8f8f6; }
+    .q-num {
+      background: var(--accent);
+      color: white;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800;
+      flex-shrink: 0;
+    }
+    .q-arrow { margin-left: auto; font-size: 18px; color: var(--muted); transition: transform 0.2s; }
+    details[open] .q-arrow { transform: rotate(180deg); }
+    details[open] summary { background: #f8f8f6; border-bottom: 1px solid var(--border); }
+    .practice-answer { padding: 20px; background: #fafaf8; font-size: 15px; }
+
+    .difficulty-tag { font-size: 11px; padding: 2px 8px; border-radius: 999px; font-weight: 700; }
+    .diff-easy   { background: #dcfce7; color: var(--easy-border); }
+    .diff-medium { background: #fef9c3; color: #854d0e; }
+    .diff-hard   { background: #fee2e2; color: var(--hard-border); }
+
+    /* ── CHEATSHEET BOX ── */
+    .cheat-box {
+      background: #fffbeb;
+      border: 2px solid #fde68a;
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+    .cheat-box h2 { color: #92400e; font-size: 18px; font-weight: 800; margin-bottom: 14px; }
+
+    @media (max-width: 520px) {
+      body { font-size: 16px; padding: 14px 10px 56px; }
+      .title-block h1 { font-size: 21px; }
+      .math-block { font-size: 12.5px; }
+      .rule-table { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <a href="../index.html" class="back-link">← Back to all notes</a>
+
+  <!-- TITLE -->
+  <div class="title-block">
+    <h1>Upper &amp; Lower Bounds</h1>
+    <div class="title-meta">
+      <span class="pill">📅 2 May 2026</span>
+      <span class="pill">📌 Edexcel IGCSE — Number</span>
+      <span class="pill">📄 Paper 1H &amp; 2H</span>
+      <span class="pill">⚖️ Limits of Accuracy</span>
+    </div>
+  </div>
+
+  <!-- KEY CONCEPT -->
+  <div class="concept-box">
+    <h2>💡 What &amp; Why</h2>
+    <p>Whenever a measurement is rounded, the <strong>true value</strong> could be slightly bigger or slightly smaller than what's written. The <strong>upper bound</strong> is the largest the value could possibly be, and the <strong>lower bound</strong> is the smallest it could be.</p>
+    <p>This matters in real life — if you're building something, a tiny rounding error could make it too big or too small. Edexcel tests this because it's a core number skill for Higher tier and appears regularly on both papers, often worth 3–4 marks.</p>
+    <p>There are two kinds of question: (1) <strong>finding bounds</strong> from a rounded number, and (2) <strong>using bounds</strong> in calculations (area, speed, difference, etc.). This note covers both.</p>
+  </div>
+
+  <!-- PART 1: FINDING BOUNDS -->
+  <div class="card">
+    <h2>📐 Part 1 — Finding Upper &amp; Lower Bounds</h2>
+
+    <div class="step step-purple">
+      <div class="step-label">THE KEY RULE — always half the unit of rounding</div>
+      <div class="step-text">Whatever you've rounded to, <strong>add half of it</strong> to get the upper bound, and <strong>subtract half of it</strong> to get the lower bound.</div>
+    </div>
+
+    <div class="step step-green">
+      <div class="step-label">Step 1 — Identify the unit of rounding</div>
+      <div class="step-text">Read the question carefully. It tells you: "nearest cm", "nearest 10", "2 d.p.", "3 s.f.", etc. From that, find the smallest unit.</div>
+    </div>
+
+    <div class="step step-blue">
+      <div class="step-label">Step 2 — Halve the unit</div>
+      <div class="step-text">Divide that unit by 2. This is called the <strong>half-interval</strong>.</div>
+    </div>
+
+    <div class="step step-blue">
+      <div class="step-label">Step 3 — Add and subtract</div>
+      <div class="step-text">Upper bound = given value + half-interval<br>Lower bound = given value − half-interval</div>
+    </div>
+
+    <div class="step step-orange">
+      <div class="step-label">Warning — Upper bound is NEVER reached</div>
+      <div class="step-text">The upper bound is the value the measurement approaches but never quite reaches. That's why error intervals are written as: <strong>LB ≤ x &lt; UB</strong> (strict inequality at the top). This is very important for the error interval notation question.</div>
+    </div>
+
+    <h3>Quick Reference — Common Rounding Scenarios</h3>
+    <table class="rule-table">
+      <tr>
+        <th>Rounded to…</th>
+        <th>Unit</th>
+        <th>Half-interval</th>
+        <th>Example: value = 24</th>
+      </tr>
+      <tr>
+        <td>Nearest 1 (integer)</td>
+        <td>1</td>
+        <td>0.5</td>
+        <td><span class="rule-lb">LB = 23.5</span> &nbsp; <span class="rule-ub">UB = 24.5</span></td>
+      </tr>
+      <tr>
+        <td>Nearest 10</td>
+        <td>10</td>
+        <td>5</td>
+        <td>e.g. 240: <span class="rule-lb">LB = 235</span> &nbsp; <span class="rule-ub">UB = 245</span></td>
+      </tr>
+      <tr>
+        <td>Nearest 100</td>
+        <td>100</td>
+        <td>50</td>
+        <td>e.g. 2400: <span class="rule-lb">LB = 2350</span> &nbsp; <span class="rule-ub">UB = 2450</span></td>
+      </tr>
+      <tr>
+        <td>1 decimal place (0.1)</td>
+        <td>0.1</td>
+        <td>0.05</td>
+        <td>e.g. 6.4: <span class="rule-lb">LB = 6.35</span> &nbsp; <span class="rule-ub">UB = 6.45</span></td>
+      </tr>
+      <tr>
+        <td>2 decimal places (0.01)</td>
+        <td>0.01</td>
+        <td>0.005</td>
+        <td>e.g. 3.82: <span class="rule-lb">LB = 3.815</span> &nbsp; <span class="rule-ub">UB = 3.825</span></td>
+      </tr>
+      <tr>
+        <td>3 significant figures</td>
+        <td>Depends on size</td>
+        <td>Half the last sig. fig. position</td>
+        <td>e.g. 24.8: <span class="rule-lb">LB = 24.75</span> &nbsp; <span class="rule-ub">UB = 24.85</span></td>
+      </tr>
+      <tr>
+        <td>Nearest 5</td>
+        <td>5</td>
+        <td>2.5</td>
+        <td>e.g. 145: <span class="rule-lb">LB = 142.5</span> &nbsp; <span class="rule-ub">UB = 147.5</span></td>
+      </tr>
+    </table>
+
+    <div class="step step-teal" style="margin-top:16px;">
+      <div class="step-label">Error Interval Notation</div>
+      <div class="step-text">Always write bounds using: &nbsp; <strong>LB ≤ x &lt; UB</strong><br>
+      Example: 6.4 rounded to 1 d.p. → <strong>6.35 ≤ x &lt; 6.45</strong><br>
+      Note the ≤ on the left (LB is included) and &lt; on the right (UB is NOT included).</div>
+    </div>
+  </div>
+
+  <!-- PART 2: OPERATIONS CHEATSHEET -->
+  <div class="cheat-box">
+    <h2>🗝️ Part 2 — Using Bounds in Calculations: The Golden Rules</h2>
+    <p style="font-size:15px; color:#78350f; margin-bottom:14px;">This is the part most people get wrong. The rule is: <strong>think about what makes the answer as big/small as possible.</strong></p>
+    <table class="rule-table">
+      <tr>
+        <th>Calculation</th>
+        <th>For MAX (Upper Bound)</th>
+        <th>For MIN (Lower Bound)</th>
+        <th>Memory Hook</th>
+      </tr>
+      <tr>
+        <td><strong>Addition</strong><br>A + B</td>
+        <td class="rule-ub">UB(A) + UB(B)</td>
+        <td class="rule-lb">LB(A) + LB(B)</td>
+        <td class="rule-mem">Both big → bigger sum<br>Both small → smaller sum</td>
+      </tr>
+      <tr>
+        <td><strong>Subtraction</strong><br>A − B</td>
+        <td class="rule-ub">UB(A) − LB(B)</td>
+        <td class="rule-lb">LB(A) − UB(B)</td>
+        <td class="rule-mem">Big minus small → biggest difference<br>"SSS" — Same Signs Subtract!<br>(to find UB: use opposite signs)</td>
+      </tr>
+      <tr>
+        <td><strong>Multiplication</strong><br>A × B<br>(area, volume)</td>
+        <td class="rule-ub">UB(A) × UB(B)</td>
+        <td class="rule-lb">LB(A) × LB(B)</td>
+        <td class="rule-mem">Both big → biggest product<br>Both small → smallest product</td>
+      </tr>
+      <tr>
+        <td><strong>Division</strong><br>A ÷ B<br>(speed = dist ÷ time)</td>
+        <td class="rule-ub">UB(A) ÷ LB(B)</td>
+        <td class="rule-lb">LB(A) ÷ UB(B)</td>
+        <td class="rule-mem">Big ÷ small → biggest result<br>Small ÷ big → smallest result</td>
+      </tr>
+      <tr>
+        <td><strong>Perimeter</strong><br>(sum of sides)</td>
+        <td class="rule-ub">UB of every side</td>
+        <td class="rule-lb">LB of every side</td>
+        <td class="rule-mem">Same as addition — all big or all small</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ══════════════ CONTEXT 1: FINDING BOUNDS ══════════════ -->
+  <div class="context-header"><span class="context-icon">🔍</span> Context 1: Finding Bounds &amp; Error Intervals</div>
+
+  <div class="example easy">
+    <div class="example-header">
+      <span class="example-badge">EASY</span>
+      <span class="context-badge">Nearest whole number</span>
+      Example 1 — Simple bounds from rounding to nearest cm
+    </div>
+    <div class="example-body">
+      <div class="example-question">A pencil measures 14 cm, correct to the nearest centimetre. Write down the upper and lower bounds for its length, and write the error interval.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — What was it rounded to?</div>
+        <div class="step-text">Nearest centimetre → the unit is 1 cm.</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 2 — Find the half-interval</div>
+        <div class="math-block">Half of 1 cm = 0.5 cm</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Add and subtract</div>
+        <div class="math-block">Upper bound = 14 + 0.5 = 14.5 cm
+Lower bound = 14 − 0.5 = 13.5 cm</div>
+      </div>
+      <div class="step step-teal">
+        <div class="step-label">Step 4 — Write the error interval</div>
+        <div class="math-block">13.5 ≤ length &lt; 14.5</div>
+      </div>
+      <div class="check-box"><span>✓ SENSE CHECK:</span> Any value from 13.5 up to (but not including) 14.5 rounds to 14. Correct! ✔</div>
+    </div>
+  </div>
+
+  <div class="example easy">
+    <div class="example-header">
+      <span class="example-badge">EASY</span>
+      <span class="context-badge">Nearest 10</span>
+      Example 2 — Bounds from rounding to the nearest 10
+    </div>
+    <div class="example-body">
+      <div class="example-question">A crowd of 4800 people is given correct to the nearest 100. Write down the error interval for the number of people, n.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Unit of rounding</div>
+        <div class="step-text">Nearest 100 → unit is 100.</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 2 — Half-interval</div>
+        <div class="math-block">Half of 100 = 50</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Upper and lower bounds</div>
+        <div class="math-block">Upper bound = 4800 + 50 = 4850
+Lower bound = 4800 − 50 = 4750</div>
+      </div>
+      <div class="step step-teal">
+        <div class="step-label">Step 4 — Error interval</div>
+        <div class="math-block">4750 ≤ n &lt; 4850</div>
+      </div>
+      <div class="check-box"><span>✓ SENSE CHECK:</span> 4750 rounds up to 4800 ✔ &nbsp; 4849 rounds down to 4800 ✔ &nbsp; 4850 would round up to 4900, so it's excluded. ✔</div>
+    </div>
+  </div>
+
+  <div class="example easy">
+    <div class="example-header">
+      <span class="example-badge">EASY</span>
+      <span class="context-badge">Significant figures</span>
+      Example 3 — Bounds from significant figures
+    </div>
+    <div class="example-body">
+      <div class="example-question">A speed is recorded as 24.8 m/s, correct to 3 significant figures. Find the upper and lower bounds.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — What is the last significant figure's place?</div>
+        <div class="step-text">3 significant figures in 24.8 → the last sig. fig. is the digit 8, which is in the <strong>tenths</strong> column (1 decimal place). So the unit of rounding is 0.1.</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 2 — Half-interval</div>
+        <div class="math-block">Half of 0.1 = 0.05</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Bounds</div>
+        <div class="math-block">Upper bound = 24.8 + 0.05 = 24.85 m/s
+Lower bound = 24.8 − 0.05 = 24.75 m/s</div>
+      </div>
+      <div class="step step-teal">
+        <div class="step-label">Step 4 — Error interval</div>
+        <div class="math-block">24.75 ≤ speed &lt; 24.85</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ CONTEXT 2: PERIMETER ══════════════ -->
+  <div class="context-header"><span class="context-icon">📏</span> Context 2: Perimeter</div>
+
+  <div class="example easy">
+    <div class="example-header">
+      <span class="example-badge">EASY</span>
+      <span class="context-badge">Perimeter</span>
+      Example 4 — Upper bound for perimeter of a rectangle
+    </div>
+    <div class="example-body">
+      <div class="example-question">A rectangle has length 35 cm and width 26 cm, each measured to the nearest centimetre. Calculate the upper bound for the perimeter.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Find bounds for each measurement</div>
+        <div class="math-block">Length: rounded to nearest 1 cm → half-interval = 0.5 cm
+  UB(length) = 35 + 0.5 = 35.5 cm
+  LB(length) = 35 − 0.5 = 34.5 cm
+
+Width: rounded to nearest 1 cm → half-interval = 0.5 cm
+  UB(width) = 26 + 0.5 = 26.5 cm
+  LB(width) = 26 − 0.5 = 25.5 cm</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 2 — Rule: UB of perimeter = UB of ALL sides</div>
+        <div class="step-text">To make the perimeter as large as possible, use the upper bound for every measurement.</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Calculate upper bound of perimeter</div>
+        <div class="math-block">Perimeter = 2 × (length + width)
+
+UB(P) = 2 × (UB(length) + UB(width))
+UB(P) = 2 × (35.5 + 26.5)
+UB(P) = 2 × 62
+UB(P) = 124 cm</div>
+      </div>
+      <div class="check-box"><span>✓ CHECK:</span> Nominal perimeter = 2 × (35 + 26) = 122 cm. Our answer of 124 cm is slightly above that — makes sense! ✔</div>
+    </div>
+  </div>
+
+  <!-- ══════════════ CONTEXT 3: AREA ══════════════ -->
+  <div class="context-header"><span class="context-icon">🟦</span> Context 3: Area</div>
+
+  <div class="example medium">
+    <div class="example-header">
+      <span class="example-badge">MEDIUM</span>
+      <span class="context-badge">Area — rectangle</span>
+      Example 5 — Upper and lower bounds for area of a rectangle
+    </div>
+    <div class="example-body">
+      <div class="example-question">A field has width 28 m (nearest metre) and length 145 m (nearest 5 metres). Calculate the upper and lower bounds for the area of the field.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Bounds for width (nearest 1 metre)</div>
+        <div class="math-block">Half-interval = 0.5 m
+UB(width) = 28 + 0.5 = 28.5 m
+LB(width) = 28 − 0.5 = 27.5 m</div>
+      </div>
+      <div class="step step-green">
+        <div class="step-label">Step 2 — Bounds for length (nearest 5 metres)</div>
+        <div class="math-block">Half-interval = 5 ÷ 2 = 2.5 m
+UB(length) = 145 + 2.5 = 147.5 m
+LB(length) = 145 − 2.5 = 142.5 m</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 3 — Rule: for area (multiplication)</div>
+        <div class="step-text">UB of area = UB × UB &nbsp;&nbsp;&nbsp; LB of area = LB × LB</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 4 — Calculate UB of area</div>
+        <div class="math-block">UB(area) = UB(width) × UB(length)
+UB(area) = 28.5 × 147.5
+
+         28.5
+       × 147.5
+       ───────
+         142.5   (28.5 × 5 ÷ 10)
+        1995.0   (28.5 × 70)
+        2280.0   (28.5 × 80)
+        + 28.5 × 100 = 2850
+       ───────────────────
+       4203.75 m²
+
+UB(area) = 4203.75 m²</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 5 — Calculate LB of area</div>
+        <div class="math-block">LB(area) = LB(width) × LB(length)
+LB(area) = 27.5 × 142.5
+
+         27.5
+       × 142.5
+       ───────
+         137.5   (27.5 × 5 ÷ 10)
+        1925.0   (27.5 × 70)
+        2200.0   (27.5 × 80)
+       + 27.5 × 100 = 2750
+       ──────────────────
+       3918.75 m²
+
+LB(area) = 3918.75 m²</div>
+      </div>
+      <div class="check-box"><span>✓ CHECK:</span> Nominal area = 28 × 145 = 4060 m². Our UB (4203.75) is above and LB (3918.75) is below — that's correct! ✔</div>
+    </div>
+  </div>
+
+  <!-- ══════════════ CONTEXT 4: SUBTRACTION / DIFFERENCE ══════════════ -->
+  <div class="context-header"><span class="context-icon">➖</span> Context 4: Difference (Subtraction)</div>
+
+  <div class="step step-orange" style="margin-bottom:16px; border-radius:10px;">
+    <div class="step-label">Why subtraction is the trickiest one</div>
+    <div class="step-text">To get the <strong>maximum difference</strong> (UB of A − B), you want A as <em>big</em> as possible AND B as <em>small</em> as possible. This feels backwards! Memory hook: <strong>"Big minus small = biggest gap"</strong></div>
+  </div>
+
+  <div class="example medium">
+    <div class="example-header">
+      <span class="example-badge">MEDIUM</span>
+      <span class="context-badge">Difference</span>
+      Example 6 — Maximum and minimum difference between two lengths
+    </div>
+    <div class="example-body">
+      <div class="example-question">Rope A is 5.6 m long, correct to 1 decimal place. Rope B is 3.2 m long, correct to 1 decimal place. Find the upper and lower bounds for the difference in their lengths (A − B).</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Bounds for Rope A (1 d.p. → unit 0.1, half = 0.05)</div>
+        <div class="math-block">UB(A) = 5.6 + 0.05 = 5.65 m
+LB(A) = 5.6 − 0.05 = 5.55 m</div>
+      </div>
+      <div class="step step-green">
+        <div class="step-label">Step 2 — Bounds for Rope B (1 d.p. → unit 0.1, half = 0.05)</div>
+        <div class="math-block">UB(B) = 3.2 + 0.05 = 3.25 m
+LB(B) = 3.2 − 0.05 = 3.15 m</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 3 — RULE for subtraction</div>
+        <div class="step-text">UB(A − B) = UB(A) − LB(B) &nbsp; ← big minus small = biggest difference<br>
+        LB(A − B) = LB(A) − UB(B) &nbsp; ← small minus big = smallest difference</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 4 — Upper bound of difference</div>
+        <div class="math-block">UB(A − B) = UB(A) − LB(B)
+           = 5.65 − 3.15
+           = 2.50 m</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 5 — Lower bound of difference</div>
+        <div class="math-block">LB(A − B) = LB(A) − UB(B)
+           = 5.55 − 3.25
+           = 2.30 m</div>
+      </div>
+      <div class="check-box"><span>✓ CHECK:</span> Nominal difference = 5.6 − 3.2 = 2.4 m. Our UB (2.5) is above and LB (2.3) is below. Correct! ✔</div>
+    </div>
+  </div>
+
+  <!-- ══════════════ CONTEXT 5: SPEED / DIVISION ══════════════ -->
+  <div class="context-header"><span class="context-icon">🚗</span> Context 5: Speed = Distance ÷ Time (Division)</div>
+
+  <div class="step step-orange" style="margin-bottom:16px; border-radius:10px;">
+    <div class="step-label">Why division is tricky</div>
+    <div class="step-text">To maximise a fraction, you want <strong>big numerator ÷ small denominator</strong>. So UB(speed) = UB(distance) ÷ LB(time). Think: if you go far and take less time, your speed is highest.</div>
+  </div>
+
+  <div class="example medium">
+    <div class="example-header">
+      <span class="example-badge">MEDIUM</span>
+      <span class="context-badge">Speed — division</span>
+      Example 7 — Upper bound for average speed
+    </div>
+    <div class="example-body">
+      <div class="example-question">A car travels 240 km, correct to the nearest 10 km, in 3.5 hours, correct to 1 decimal place. Find the upper bound for the average speed of the car.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Bounds for distance (nearest 10 km)</div>
+        <div class="math-block">Half-interval = 10 ÷ 2 = 5 km
+UB(distance) = 240 + 5 = 245 km
+LB(distance) = 240 − 5 = 235 km</div>
+      </div>
+      <div class="step step-green">
+        <div class="step-label">Step 2 — Bounds for time (1 d.p., unit = 0.1 h)</div>
+        <div class="math-block">Half-interval = 0.1 ÷ 2 = 0.05 hours
+UB(time) = 3.5 + 0.05 = 3.55 hours
+LB(time) = 3.5 − 0.05 = 3.45 hours</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 3 — Rule: UB(speed) = UB(distance) ÷ LB(time)</div>
+        <div class="step-text">More distance in less time → fastest possible speed.</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 4 — Calculate upper bound of speed</div>
+        <div class="math-block">UB(speed) = UB(distance) ÷ LB(time)
+          = 245 ÷ 3.45
+
+          245 ÷ 3.45 = 71.014...
+
+UB(speed) = 71.0 km/h (to 3 s.f.)</div>
+      </div>
+      <div class="check-box"><span>✓ CHECK:</span> Nominal speed = 240 ÷ 3.5 = 68.6 km/h. Our upper bound (71.0) is higher — correct! ✔</div>
+    </div>
+  </div>
+
+  <!-- ══════════════ HARD EXAMPLES ══════════════ -->
+  <div class="context-header"><span class="context-icon">🎯</span> Exam-Style Multi-Step Questions</div>
+
+  <div class="example hard">
+    <div class="example-header">
+      <span class="example-badge">HARD</span>
+      <span class="context-badge">Formula with division — exam style</span>
+      Example 8 — Formula: Petrol consumption = Distance ÷ Volume
+    </div>
+    <div class="example-body">
+      <div class="example-question">A car travels 150 miles, measured to the nearest 10 miles. It uses 12.4 litres of petrol, measured to 3 significant figures. Calculate the upper bound for the car's petrol consumption in miles per litre. Give your answer correct to 2 decimal places.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Bounds for distance (nearest 10 miles)</div>
+        <div class="math-block">Half-interval = 10 ÷ 2 = 5 miles
+UB(distance) = 150 + 5 = 155 miles
+LB(distance) = 150 − 5 = 145 miles</div>
+      </div>
+      <div class="step step-green">
+        <div class="step-label">Step 2 — Bounds for volume (3 s.f.: last digit is in tenths → unit = 0.1)</div>
+        <div class="math-block">Half-interval = 0.1 ÷ 2 = 0.05 litres
+UB(volume) = 12.4 + 0.05 = 12.45 litres
+LB(volume) = 12.4 − 0.05 = 12.35 litres</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 3 — Rule: consumption = distance ÷ volume (division)</div>
+        <div class="step-text">UB(consumption) = UB(distance) ÷ LB(volume)<br>
+        More distance on less fuel → highest consumption figure.</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 4 — Calculate</div>
+        <div class="math-block">UB(consumption) = 155 ÷ 12.35
+
+= 12.55...
+
+Let's work this out carefully:
+12.35 × 12 = 148.2
+155 − 148.2 = 6.8 remaining
+
+6.8 ÷ 12.35 = 0.550...
+
+So: 155 ÷ 12.35 = 12.550...
+
+UB(consumption) = 12.55 miles per litre (to 2 d.p.)</div>
+      </div>
+      <div class="check-box"><span>✓ CHECK:</span> Nominal = 150 ÷ 12.4 = 12.10 miles/litre. Upper bound (12.55) is above this — correct! ✔</div>
+    </div>
+  </div>
+
+  <div class="example hard">
+    <div class="example-header">
+      <span class="example-badge">HARD</span>
+      <span class="context-badge">Mixed — area of annulus (ring)</span>
+      Example 9 — Bounds within a formula: area of a ring shape
+    </div>
+    <div class="example-body">
+      <div class="example-question">A ring shape (annulus) has outer radius R = 8.5 cm and inner radius r = 3.2 cm, each correct to 1 decimal place. The area formula is A = π(R² − r²). Find the lower bound for the area of the ring.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Bounds for R and r (1 d.p.)</div>
+        <div class="math-block">Half-interval for both = 0.05 cm
+
+UB(R) = 8.5 + 0.05 = 8.55 cm
+LB(R) = 8.5 − 0.05 = 8.45 cm
+
+UB(r) = 3.2 + 0.05 = 3.25 cm
+LB(r) = 3.2 − 0.05 = 3.15 cm</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 2 — Think carefully about what MINIMISES the area</div>
+        <div class="step-text">Area = π(R² − r²). This is a subtraction: R² minus r². To get the <strong>minimum area</strong>, we want R² as small as possible (so use LB of R) AND r² as large as possible (so use UB of r). This is the subtraction rule again!</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Calculate LB(R²) using LB(R)</div>
+        <div class="math-block">LB(R²) = LB(R) × LB(R)
+       = 8.45 × 8.45
+       = 71.4025 cm²</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 4 — Calculate UB(r²) using UB(r)</div>
+        <div class="math-block">UB(r²) = UB(r) × UB(r)
+       = 3.25 × 3.25
+       = 10.5625 cm²</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 5 — Calculate LB of area</div>
+        <div class="math-block">LB(A) = π × (LB(R²) − UB(r²))
+      = π × (71.4025 − 10.5625)
+      = π × 60.84
+      = 191.13... cm²
+
+LB(area) = 191.1 cm² (to 1 d.p.)</div>
+      </div>
+      <div class="check-box"><span>✓ CHECK:</span> Nominal area = π × (8.5² − 3.2²) = π × (72.25 − 10.24) = π × 62.01 = 194.8 cm². Our lower bound (191.1) is below this — correct! ✔</div>
+    </div>
+  </div>
+
+  <div class="example hard">
+    <div class="example-header">
+      <span class="example-badge">HARD</span>
+      <span class="context-badge">Speed, distance, time — prove speed limit breached</span>
+      Example 10 — Exam reasoning question
+    </div>
+    <div class="example-body">
+      <div class="example-question">A road is 4530 m long, correct to the nearest 10 metres. Kirsty drove along the road in 205 seconds, correct to the nearest 5 seconds. The speed limit is 80 km/h. Could Kirsty have been breaking the speed limit? Show your working and justify your answer.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Bounds for distance (nearest 10 m)</div>
+        <div class="math-block">Half-interval = 5 m
+UB(distance) = 4530 + 5 = 4535 m
+LB(distance) = 4530 − 5 = 4525 m</div>
+      </div>
+      <div class="step step-green">
+        <div class="step-label">Step 2 — Bounds for time (nearest 5 s)</div>
+        <div class="math-block">Half-interval = 2.5 s
+UB(time) = 205 + 2.5 = 207.5 s
+LB(time) = 205 − 2.5 = 202.5 s</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 3 — To check if limit is BROKEN, find MAXIMUM possible speed</div>
+        <div class="step-text">UB(speed) = UB(distance) ÷ LB(time) — this gives the fastest she could have gone.</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 4 — Calculate UB of speed in m/s then convert to km/h</div>
+        <div class="math-block">UB(speed) = 4535 ÷ 202.5
+         = 22.395... m/s
+
+Convert to km/h:
+22.395... × 3600 ÷ 1000
+= 22.395 × 3.6
+= 80.622... km/h</div>
+      </div>
+      <div class="step step-teal">
+        <div class="step-label">Step 5 — Conclusion (must be written clearly for the mark!)</div>
+        <div class="step-text">The maximum possible speed is 80.6 km/h. Since this is greater than the 80 km/h limit, <strong>it is possible that Kirsty was breaking the speed limit</strong>. However, it's also possible she wasn't — we cannot be certain.</div>
+      </div>
+      <div class="check-box"><span>✓ EXAM TIP:</span> Always write a conclusion sentence in bounds reasoning questions. Saying "yes" or "no" alone gets no marks — you must explain with reference to your calculated bound. ✔</div>
+    </div>
+  </div>
+
+  <!-- COMMON MISTAKES -->
+  <div class="mistakes-box">
+    <h2>🚨 Common Mistakes — Watch Out, John!</h2>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Subtracting the wrong bounds:</strong> For A − B, the upper bound is UB(A) − LB(B), NOT UB(A) − UB(B). Use "big minus small = biggest gap". This is the single most common error in bounds questions.</div>
+    </div>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Using the wrong half-interval for "nearest 5":</strong> If rounded to the nearest 5, the half-interval is 2.5, not 0.5. Always halve the rounding unit — not just assume 0.5.</div>
+    </div>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Writing UB with ≤ instead of &lt;:</strong> The error interval is <strong>LB ≤ x &lt; UB</strong>. The upper bound is never actually reached. Writing UB with ≤ loses a mark.</div>
+    </div>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Division: using UB ÷ UB for the upper bound:</strong> For UB(A ÷ B), you need <strong>UB(A) ÷ LB(B)</strong>. A bigger denominator makes the fraction smaller, so you must use LB of the denominator to maximise the result.</div>
+    </div>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Not converting units before comparing:</strong> In speed questions, make sure both speeds are in the same units (both km/h, or both m/s) before comparing to a speed limit.</div>
+    </div>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Rounding mid-calculation:</strong> Never round until the very last step. If you round UB(A) or LB(B) before subtracting/dividing, your answer will be wrong. Keep all digits until the end.</div>
+    </div>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Forgetting the conclusion sentence:</strong> "Reasoning" or "could it exceed X?" questions require a written conclusion to earn the final mark. Always end with a clear sentence like "Therefore, it is possible that…"</div>
+    </div>
+  </div>
+
+  <!-- QUICK RECAP -->
+  <div class="recap-box">
+    <h2>⚡ Quick Recap — 30 Second Review</h2>
+    <ul class="recap-list">
+      <li>UB = value + half the rounding unit. &nbsp; LB = value − half the rounding unit.</li>
+      <li>Error interval: <strong>LB ≤ x &lt; UB</strong> — strict inequality (&lt;) at the top.</li>
+      <li>Add/multiply: UB of result → use UB of everything. LB of result → use LB of everything.</li>
+      <li>Subtract (A − B): UB → UB(A) − LB(B). LB → LB(A) − UB(B). Memory: "big minus small = biggest gap".</li>
+      <li>Divide (A ÷ B): UB → UB(A) ÷ LB(B). LB → LB(A) ÷ UB(B). Memory: "big over small = biggest result".</li>
+      <li>Always write a conclusion sentence for reasoning questions. Never round mid-calculation.</li>
+    </ul>
+  </div>
+
+  <!-- PRACTICE -->
+  <div class="card practice-section">
+    <h2>✏️ Practice Questions</h2>
+    <p>Click a question to reveal the full worked answer.</p>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">1</span>
+        A book weighs 340 g, correct to the nearest 10 g. Write the error interval for the weight, w.
+        <span class="difficulty-tag diff-easy">Easy</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Rounded to nearest 10 g → unit = 10, half-interval = 5 g
+
+UB = 340 + 5 = 345 g
+LB = 340 − 5 = 335 g
+
+Error interval:   335 ≤ w &lt; 345</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">2</span>
+        A plank is 2.3 m long, correct to 1 decimal place. Write down the upper and lower bounds.
+        <span class="difficulty-tag diff-easy">Easy</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">1 d.p. → unit = 0.1 m, half-interval = 0.05 m
+
+UB = 2.3 + 0.05 = 2.35 m
+LB = 2.3 − 0.05 = 2.25 m
+
+Error interval:   2.25 ≤ length &lt; 2.35</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">3</span>
+        A number is given as 5700, correct to the nearest 100. Write the error interval.
+        <span class="difficulty-tag diff-easy">Easy</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Nearest 100 → unit = 100, half-interval = 50
+
+UB = 5700 + 50 = 5750
+LB = 5700 − 50 = 5650
+
+Error interval:   5650 ≤ x &lt; 5750</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">4</span>
+        A rectangle is 9.4 cm × 6.1 cm, each to 1 d.p. Find the upper bound for the perimeter.
+        <span class="difficulty-tag diff-easy">Easy</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Both to 1 d.p. → half-interval = 0.05 cm
+
+UB(length) = 9.4 + 0.05 = 9.45 cm
+UB(width)  = 6.1 + 0.05 = 6.15 cm
+
+UB(perimeter) = 2 × (UB(length) + UB(width))
+             = 2 × (9.45 + 6.15)
+             = 2 × 15.60
+             = 31.2 cm
+
+Nominal perimeter = 2 × (9.4 + 6.1) = 31.0 cm ✔ (UB is above this)</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">5</span>
+        A rectangle is 12 cm × 7 cm, each to the nearest cm. Find the lower bound for the area.
+        <span class="difficulty-tag diff-medium">Medium</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Nearest 1 cm → half-interval = 0.5 cm
+
+LB(length) = 12 − 0.5 = 11.5 cm
+LB(width)  =  7 − 0.5 =  6.5 cm
+
+LB(area) = LB(length) × LB(width)
+         = 11.5 × 6.5
+         = 74.75 cm²
+
+Nominal area = 12 × 7 = 84 cm²
+LB (74.75) is below this ✔</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">6</span>
+        Box A weighs 8.6 kg and Box B weighs 3.9 kg, both correct to 1 d.p. Find the upper and lower bounds for the difference in their weights.
+        <span class="difficulty-tag diff-medium">Medium</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">1 d.p. → half-interval = 0.05 kg
+
+UB(A) = 8.65 kg    LB(A) = 8.55 kg
+UB(B) = 3.95 kg    LB(B) = 3.85 kg
+
+Rule for subtraction:
+  UB(A − B) = UB(A) − LB(B) = 8.65 − 3.85 = 4.80 kg
+  LB(A − B) = LB(A) − UB(B) = 8.55 − 3.95 = 4.60 kg
+
+Nominal difference = 8.6 − 3.9 = 4.7 kg
+UB (4.80) above, LB (4.60) below ✔</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">7</span>
+        A runner covers 400 m (nearest 10 m) in 52.4 s (nearest 0.1 s). Find the upper bound for their average speed in m/s. Give your answer to 3 s.f.
+        <span class="difficulty-tag diff-medium">Medium</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Distance: nearest 10 m → half = 5
+  UB(d) = 405 m
+
+Time: 1 d.p. → half = 0.05 s
+  LB(t) = 52.4 − 0.05 = 52.35 s
+
+UB(speed) = UB(d) ÷ LB(t)
+          = 405 ÷ 52.35
+          = 7.737... m/s
+          = 7.74 m/s (3 s.f.)
+
+Nominal speed = 400 ÷ 52.4 = 7.63 m/s
+UB (7.74) is above ✔</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">8</span>
+        A wire is 75 cm long to the nearest cm. It is cut into 6 equal pieces (6 is exact). Find the upper and lower bounds for the length of each piece.
+        <span class="difficulty-tag diff-medium">Medium</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Nearest 1 cm → half-interval = 0.5 cm
+
+UB(wire) = 75.5 cm
+LB(wire) = 74.5 cm
+
+Note: 6 is EXACT, so it has no bounds — only the wire length has uncertainty.
+
+UB(each piece) = UB(wire) ÷ 6 = 75.5 ÷ 6 = 12.5833... cm ≈ 12.58 cm (4 s.f.)
+LB(each piece) = LB(wire) ÷ 6 = 74.5 ÷ 6 = 12.4166... cm ≈ 12.42 cm (4 s.f.)
+
+Nominal = 75 ÷ 6 = 12.5 cm ✔</div>
+        <p style="color:var(--orange); font-weight:700; margin-top:10px; font-size:14px;">⚠️ Key point: exact numbers (like 6 pieces) have NO bounds — only measured quantities have bounds.</p>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">9</span>
+        A train travels 320 km (nearest 10 km) in 2.5 hours (nearest 0.1 hours). The speed limit is 130 km/h. Could the train have exceeded the speed limit? Show full working.
+        <span class="difficulty-tag diff-hard">Hard</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Distance: nearest 10 km → half = 5 km
+  UB(d) = 325 km
+  LB(d) = 315 km
+
+Time: 1 d.p. → half = 0.05 h
+  UB(t) = 2.55 h
+  LB(t) = 2.45 h
+
+To check if limit exceeded → find UB(speed):
+UB(speed) = UB(d) ÷ LB(t)
+          = 325 ÷ 2.45
+          = 132.653... km/h</div>
+        <p style="margin-top:10px; font-weight:700; color:#7f1d1d;">The maximum possible speed is 132.7 km/h, which exceeds 130 km/h. Therefore, it is <em>possible</em> that the train exceeded the speed limit. However, we cannot say for certain that it did — the actual speed could be anywhere between the lower and upper bounds.</p>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">10</span>
+        A triangle has base 8.4 cm and perpendicular height 5.2 cm, each to 1 d.p. Find the upper and lower bounds for the area. (Area = ½ × base × height)
+        <span class="difficulty-tag diff-hard">Hard</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">1 d.p. → half-interval = 0.05 cm
+
+UB(base) = 8.45 cm    LB(base) = 8.35 cm
+UB(height) = 5.25 cm  LB(height) = 5.15 cm
+
+Note: ½ is EXACT — no bounds needed for it.
+
+UB(area) = ½ × UB(base) × UB(height)
+         = ½ × 8.45 × 5.25
+         = ½ × 44.3625
+         = 22.18125 cm²
+         ≈ 22.2 cm² (3 s.f.)
+
+LB(area) = ½ × LB(base) × LB(height)
+         = ½ × 8.35 × 5.15
+         = ½ × 43.0025
+         = 21.50125 cm²
+         ≈ 21.5 cm² (3 s.f.)
+
+Nominal area = ½ × 8.4 × 5.2 = 21.84 cm²
+UB (22.2) above, LB (21.5) below ✔</div>
+      </div>
+    </details>
+
+  </div><!-- /practice -->
+
+</div><!-- /container -->
+</body>
+</html>
