@@ -12,5 +12,12 @@
     "date": "2026-05-02",
     "tags": ["recurring decimals", "fractions", "number", "algebra", "non-calculator", "Paper 1H", "Paper 2H", "converting decimals"],
     "summary": "How to convert recurring decimals into exact fractions using algebra — covers pure recurring and mixed cases."
+  },
+  {
+    "file": "2026-05-02_number_upper_lower_bounds.html",
+    "title": "Upper & Lower Bounds",
+    "date": "2026-05-02",
+    "tags": ["bounds", "upper bound", "lower bound", "error interval", "limits of accuracy", "rounding", "number", "Paper 1H", "Paper 2H", "area", "speed", "perimeter"],
+    "summary": "Finding upper and lower bounds from rounded values, writing error intervals, and using bounds in perimeter, area, speed, difference and division problems."
   }
 ]
