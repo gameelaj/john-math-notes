@@ -7,10 +7,10 @@
     "summary": "Solve two equations with two unknowns using elimination (SSS rule) and substitution, including line-meets-curve problems."
   }
   {
-  "file": "2026-05-02_number_recurring_decimals.html",
-  "title": "Recurring Decimals → Exact Fractions",
-  "date": "2026-05-02",
-  "tags": ["recurring decimals", "fractions", "number", "algebra", "non-calculator", "Paper 1H", "Paper 2H", "converting decimals"],
-  "summary": "How to convert recurring decimals into exact fractions using algebra — covers pure recurring and mixed cases."
-}
+    "file": "2026-05-02_number_recurring_decimals.html",
+    "title": "Recurring Decimals → Exact Fractions",
+    "date": "2026-05-02",
+    "tags": ["recurring decimals", "fractions", "number", "algebra", "non-calculator", "Paper 1H", "Paper 2H", "converting decimals"],
+    "summary": "How to convert recurring decimals into exact fractions using algebra — covers pure recurring and mixed cases."
+  }
 ]
