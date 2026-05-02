@@ -223,6 +223,94 @@
     .recap ul { padding-left: 20px; }
     .recap li { margin-bottom: 8px; color: #422006; }
 
+    /* Practice questions */
+    .practice-intro {
+      background: #faf5ff;
+      border-left: 4px solid #9333ea;
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 16px 0 20px;
+      color: #4a044e;
+      font-size: 15px;
+    }
+    .practice-intro strong { color: #6b21a8; }
+    details.practice {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.15s;
+    }
+    details.practice[open] { border-color: #9333ea; }
+    details.practice summary {
+      padding: 16px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    details.practice summary:hover { background: #f8fafc; }
+    details.practice summary::-webkit-details-marker { display: none; }
+    details.practice summary::before {
+      content: '▶';
+      flex-shrink: 0;
+      font-size: 11px;
+      color: #9333ea;
+      transition: transform 0.2s;
+    }
+    details.practice[open] summary::before { transform: rotate(90deg); }
+    .q-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #f3e8ff;
+      color: #6b21a8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .q-difficulty {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .q-difficulty.easy { background: #dcfce7; color: #166534; }
+    .q-difficulty.medium { background: #fef9c3; color: #854d0e; }
+    .q-difficulty.hard { background: #fee2e2; color: #991b1b; }
+    details.practice .answer {
+      padding: 0 20px 18px;
+      border-top: 1px solid #f3e8ff;
+      background: #faf5ff;
+    }
+    details.practice .answer-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #6b21a8;
+      margin: 14px 0 8px;
+    }
+    .practice-tip {
+      text-align: center;
+      color: #64748b;
+      font-size: 13px;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
     /* Memory hook */
     .hook {
       background: #fef3c7;
@@ -713,6 +801,334 @@
         <li>Always verify your answer by plugging both values into the equation you didn't use to solve.</li>
       </ul>
     </div>
+
+    <h2>🎯 Practice Questions</h2>
+    <div class="practice-intro">
+      <strong>How to use this:</strong> Try each question on paper first. Don't peek! Once you've got an answer (or you're truly stuck), <strong>tap the question</strong> to reveal the worked solution. Compare your method to the one shown — even if your answer is right, check whether you skipped any steps.
+    </div>
+    <p class="practice-tip">↓ Tap any question to reveal the answer ↓</p>
+
+    <details class="practice">
+      <summary>
+        <span class="q-num">1</span>
+        <span>Solve: x + y = 10  and  x − y = 4</span>
+        <span class="q-difficulty easy">Easy</span>
+      </summary>
+      <div class="answer">
+        <div class="answer-label">Worked solution</div>
+        <div class="work">
+          <div class="work-line">(1)  x + y = 10</div>
+          <div class="work-line">(2)  x − y =  4</div>
+          <div class="work-comment">Coefficients of y are +1 and −1 — different signs → <strong>ADD</strong>.</div>
+
+          <div class="stack">
+            <div class="stack-row"><span class="stack-op">(1)</span><span class="stack-eq">x + y = 10</span></div>
+            <div class="stack-row"><span class="stack-op">+ (2)</span><span class="stack-eq">x − y =  4</span></div>
+            <div class="stack-line"></div>
+            <div class="stack-result">2x + 0 = 14</div>
+          </div>
+
+          <div class="work-line calc-line">2x = 14</div>
+          <div class="work-line calc-line">2x ÷ 2 = 14 ÷ 2</div>
+          <div class="work-line calc-line">x = 7</div>
+
+          <div class="work-comment">Sub x = 7 into (1):</div>
+          <div class="work-line calc-line">7 + y = 10</div>
+          <div class="work-line calc-line">7 + y − 7 = 10 − 7</div>
+          <div class="work-line calc-line">y = 3</div>
+
+          <div class="work-comment">Check in (2): 7 − 3 = 4 ✓</div>
+        </div>
+        <div class="answer-box">x = 7,  y = 3</div>
+      </div>
+    </details>
+
+    <details class="practice">
+      <summary>
+        <span class="q-num">2</span>
+        <span>Solve: 2x + 3y = 13  and  2x − y = 1</span>
+        <span class="q-difficulty easy">Easy</span>
+      </summary>
+      <div class="answer">
+        <div class="answer-label">Worked solution</div>
+        <div class="work">
+          <div class="work-line">(1)  2x + 3y = 13</div>
+          <div class="work-line">(2)  2x −  y =  1</div>
+          <div class="work-comment">Coefficients of x are both +2 — same sign → <strong>SUBTRACT</strong>. Do (1) − (2):</div>
+
+          <div class="stack">
+            <div class="stack-row"><span class="stack-op">(1)</span><span class="stack-eq">2x + 3y = 13</span></div>
+            <div class="stack-row"><span class="stack-op">− (2)</span><span class="stack-eq">2x −  y =  1</span></div>
+            <div class="stack-line"></div>
+            <div class="stack-result"> 0 + 4y = 12</div>
+          </div>
+
+          <div class="work-comment"><span class="warn">Watch the y column:</span> 3y − (−y) = 3y + y = 4y. Two negatives make a plus.</div>
+
+          <div class="work-line calc-line">4y = 12</div>
+          <div class="work-line calc-line">4y ÷ 4 = 12 ÷ 4</div>
+          <div class="work-line calc-line">y = 3</div>
+
+          <div class="work-comment">Sub y = 3 into (2):</div>
+          <div class="work-line calc-line">2x − 3 = 1</div>
+          <div class="work-line calc-line">2x − 3 + 3 = 1 + 3</div>
+          <div class="work-line calc-line">2x = 4</div>
+          <div class="work-line calc-line">2x ÷ 2 = 4 ÷ 2</div>
+          <div class="work-line calc-line">x = 2</div>
+
+          <div class="work-comment">Check in (1): 2(2) + 3(3) = 4 + 9 = 13 ✓</div>
+        </div>
+        <div class="answer-box">x = 2,  y = 3</div>
+      </div>
+    </details>
+
+    <details class="practice">
+      <summary>
+        <span class="q-num">3</span>
+        <span>Solve: 3x + 2y = 12  and  4x + 5y = 23</span>
+        <span class="q-difficulty medium">Medium</span>
+      </summary>
+      <div class="answer">
+        <div class="answer-label">Worked solution</div>
+        <div class="work">
+          <div class="work-line">(1)  3x + 2y = 12</div>
+          <div class="work-line">(2)  4x + 5y = 23</div>
+          <div class="work-comment">Nothing matches. Match x: LCM of 3 and 4 = 12. Multiply (1) by 4 and (2) by 3.</div>
+
+          <div class="work-line calc-line">(1) × 4:  3x × 4 + 2y × 4 = 12 × 4</div>
+          <div class="work-line calc-line">          12x + 8y = 48    ... call this (3)</div>
+          <div class="work-line calc-line">(2) × 3:  4x × 3 + 5y × 3 = 23 × 3</div>
+          <div class="work-line calc-line">          12x + 15y = 69   ... call this (4)</div>
+
+          <div class="work-comment">Same sign on x → <strong>SUBTRACT</strong>. Do (4) − (3):</div>
+
+          <div class="stack">
+            <div class="stack-row"><span class="stack-op">(4)</span><span class="stack-eq">12x + 15y = 69</span></div>
+            <div class="stack-row"><span class="stack-op">− (3)</span><span class="stack-eq">12x +  8y = 48</span></div>
+            <div class="stack-line"></div>
+            <div class="stack-result"> 0  +  7y = 21</div>
+          </div>
+
+          <div class="work-line calc-line">7y = 21</div>
+          <div class="work-line calc-line">7y ÷ 7 = 21 ÷ 7</div>
+          <div class="work-line calc-line">y = 3</div>
+
+          <div class="work-comment">Sub y = 3 into (1):</div>
+          <div class="work-line calc-line">3x + 2(3) = 12</div>
+          <div class="work-line calc-line">3x + 6 = 12</div>
+          <div class="work-line calc-line">3x + 6 − 6 = 12 − 6</div>
+          <div class="work-line calc-line">3x = 6</div>
+          <div class="work-line calc-line">3x ÷ 3 = 6 ÷ 3</div>
+          <div class="work-line calc-line">x = 2</div>
+
+          <div class="work-comment">Check in (2): 4(2) + 5(3) = 8 + 15 = 23 ✓</div>
+        </div>
+        <div class="answer-box">x = 2,  y = 3</div>
+      </div>
+    </details>
+
+    <details class="practice">
+      <summary>
+        <span class="q-num">4</span>
+        <span>Solve: 5x − 2y = 16  and  3x + 4y = 7</span>
+        <span class="q-difficulty medium">Medium</span>
+      </summary>
+      <div class="answer">
+        <div class="answer-label">Worked solution</div>
+        <div class="work">
+          <div class="work-line">(1)  5x − 2y = 16</div>
+          <div class="work-line">(2)  3x + 4y =  7</div>
+          <div class="work-comment">Easiest: match y. LCM of 2 and 4 = 4. Multiply (1) by 2; (2) is already 4y.</div>
+
+          <div class="work-line calc-line">(1) × 2:  5x × 2 − 2y × 2 = 16 × 2</div>
+          <div class="work-line calc-line">          10x − 4y = 32    ... call this (3)</div>
+
+          <div class="work-comment">Now y coefficients are −4 and +4. Different signs → <strong>ADD</strong> (3) and (2):</div>
+
+          <div class="stack">
+            <div class="stack-row"><span class="stack-op">(3)</span><span class="stack-eq">10x − 4y = 32</span></div>
+            <div class="stack-row"><span class="stack-op">+ (2)</span><span class="stack-eq"> 3x + 4y =  7</span></div>
+            <div class="stack-line"></div>
+            <div class="stack-result">13x + 0  = 39</div>
+          </div>
+
+          <div class="work-line calc-line">13x = 39</div>
+          <div class="work-line calc-line">13x ÷ 13 = 39 ÷ 13</div>
+          <div class="work-line calc-line">x = 3</div>
+
+          <div class="work-comment">Sub x = 3 into (2):</div>
+          <div class="work-line calc-line">3(3) + 4y = 7</div>
+          <div class="work-line calc-line">9 + 4y = 7</div>
+          <div class="work-line calc-line">9 + 4y − 9 = 7 − 9</div>
+          <div class="work-line calc-line">4y = −2</div>
+          <div class="work-line calc-line">4y ÷ 4 = −2 ÷ 4</div>
+          <div class="work-line calc-line">y = −0.5  (or −1/2)</div>
+
+          <div class="work-comment">Check in (1): 5(3) − 2(−0.5) = 15 − (−1) = 15 + 1 = 16 ✓</div>
+        </div>
+        <div class="answer-box">x = 3,  y = −0.5</div>
+      </div>
+    </details>
+
+    <details class="practice">
+      <summary>
+        <span class="q-num">5</span>
+        <span>Solve using substitution: y = 2x − 3  and  x + y = 9</span>
+        <span class="q-difficulty easy">Easy</span>
+      </summary>
+      <div class="answer">
+        <div class="answer-label">Worked solution</div>
+        <div class="work">
+          <div class="work-line">(1)  y = 2x − 3</div>
+          <div class="work-line">(2)  x + y = 9</div>
+          <div class="work-comment">Equation (1) is already rearranged. Sub "2x − 3" wherever y appears in (2):</div>
+
+          <div class="work-line calc-line">x + y = 9</div>
+          <div class="work-line calc-line">x + (2x − 3) = 9</div>
+          <div class="work-line calc-line">x + 2x − 3 = 9</div>
+          <div class="work-line calc-line">3x − 3 = 9</div>
+          <div class="work-line calc-line">3x − 3 + 3 = 9 + 3</div>
+          <div class="work-line calc-line">3x = 12</div>
+          <div class="work-line calc-line">3x ÷ 3 = 12 ÷ 3</div>
+          <div class="work-line calc-line">x = 4</div>
+
+          <div class="work-comment">Sub x = 4 into (1):</div>
+          <div class="work-line calc-line">y = 2(4) − 3</div>
+          <div class="work-line calc-line">y = 8 − 3</div>
+          <div class="work-line calc-line">y = 5</div>
+
+          <div class="work-comment">Check in (2): 4 + 5 = 9 ✓</div>
+        </div>
+        <div class="answer-box">x = 4,  y = 5</div>
+      </div>
+    </details>
+
+    <details class="practice">
+      <summary>
+        <span class="q-num">6</span>
+        <span>Solve using substitution: 2x + y = 7  and  4x − 3y = 9</span>
+        <span class="q-difficulty medium">Medium</span>
+      </summary>
+      <div class="answer">
+        <div class="answer-label">Worked solution</div>
+        <div class="work">
+          <div class="work-line">(1)  2x + y = 7</div>
+          <div class="work-line">(2)  4x − 3y = 9</div>
+          <div class="work-comment">Equation (1) has y with coefficient 1 — easy to rearrange. Make y the subject:</div>
+
+          <div class="work-line calc-line">2x + y = 7</div>
+          <div class="work-line calc-line">2x + y − 2x = 7 − 2x</div>
+          <div class="work-line calc-line">y = 7 − 2x</div>
+
+          <div class="work-comment">Sub "7 − 2x" wherever y appears in (2):</div>
+          <div class="work-line calc-line">4x − 3y = 9</div>
+          <div class="work-line calc-line">4x − 3(7 − 2x) = 9</div>
+
+          <div class="work-comment"><span class="warn">Expand carefully:</span> −3 × 7 = −21, and −3 × (−2x) = +6x.</div>
+          <div class="work-line calc-line">4x − 21 + 6x = 9</div>
+
+          <div class="work-comment">Collect x terms: 4x + 6x = 10x.</div>
+          <div class="work-line calc-line">10x − 21 = 9</div>
+          <div class="work-line calc-line">10x − 21 + 21 = 9 + 21</div>
+          <div class="work-line calc-line">10x = 30</div>
+          <div class="work-line calc-line">10x ÷ 10 = 30 ÷ 10</div>
+          <div class="work-line calc-line">x = 3</div>
+
+          <div class="work-comment">Sub x = 3 into y = 7 − 2x:</div>
+          <div class="work-line calc-line">y = 7 − 2(3)</div>
+          <div class="work-line calc-line">y = 7 − 6</div>
+          <div class="work-line calc-line">y = 1</div>
+
+          <div class="work-comment">Check in (2): 4(3) − 3(1) = 12 − 3 = 9 ✓</div>
+        </div>
+        <div class="answer-box">x = 3,  y = 1</div>
+      </div>
+    </details>
+
+    <details class="practice">
+      <summary>
+        <span class="q-num">7</span>
+        <span>Word problem: Two coffees and three teas cost £8.50. Three coffees and two teas cost £9. Find the price of each.</span>
+        <span class="q-difficulty hard">Hard</span>
+      </summary>
+      <div class="answer">
+        <div class="answer-label">Worked solution</div>
+        <div class="work">
+          <div class="work-comment">Let c = price of one coffee, t = price of one tea. Turn the words into equations:</div>
+          <div class="work-line">(1)  2c + 3t = 8.50</div>
+          <div class="work-line">(2)  3c + 2t = 9</div>
+
+          <div class="work-comment">Match c: LCM of 2 and 3 = 6. Multiply (1) by 3 and (2) by 2.</div>
+
+          <div class="work-line calc-line">(1) × 3:  2c × 3 + 3t × 3 = 8.50 × 3</div>
+          <div class="work-line calc-line">          6c + 9t = 25.50  ... call this (3)</div>
+          <div class="work-line calc-line">(2) × 2:  3c × 2 + 2t × 2 = 9 × 2</div>
+          <div class="work-line calc-line">          6c + 4t = 18     ... call this (4)</div>
+
+          <div class="work-comment">Same sign on c → <strong>SUBTRACT</strong>. Do (3) − (4):</div>
+
+          <div class="stack">
+            <div class="stack-row"><span class="stack-op">(3)</span><span class="stack-eq">6c + 9t = 25.50</span></div>
+            <div class="stack-row"><span class="stack-op">− (4)</span><span class="stack-eq">6c + 4t = 18.00</span></div>
+            <div class="stack-line"></div>
+            <div class="stack-result"> 0 + 5t =  7.50</div>
+          </div>
+
+          <div class="work-line calc-line">5t = 7.50</div>
+          <div class="work-line calc-line">5t ÷ 5 = 7.50 ÷ 5</div>
+          <div class="work-line calc-line">t = 1.50</div>
+
+          <div class="work-comment">Sub t = 1.50 into (1):</div>
+          <div class="work-line calc-line">2c + 3(1.50) = 8.50</div>
+          <div class="work-line calc-line">2c + 4.50 = 8.50</div>
+          <div class="work-line calc-line">2c + 4.50 − 4.50 = 8.50 − 4.50</div>
+          <div class="work-line calc-line">2c = 4</div>
+          <div class="work-line calc-line">2c ÷ 2 = 4 ÷ 2</div>
+          <div class="work-line calc-line">c = 2</div>
+
+          <div class="work-comment">Check in (2): 3(2) + 2(1.50) = 6 + 3 = 9 ✓</div>
+        </div>
+        <div class="answer-box">Coffee = £2.00,  Tea = £1.50</div>
+      </div>
+    </details>
+
+    <details class="practice">
+      <summary>
+        <span class="q-num">8</span>
+        <span>Solve (non-linear): y = x + 2  and  y = x² − 4</span>
+        <span class="q-difficulty hard">Hard</span>
+      </summary>
+      <div class="answer">
+        <div class="answer-label">Worked solution</div>
+        <div class="work">
+          <div class="work-line">(1)  y = x + 2</div>
+          <div class="work-line">(2)  y = x² − 4</div>
+          <div class="work-comment">Both equations equal y, so the right-hand sides must be equal:</div>
+
+          <div class="work-line calc-line">x + 2 = x² − 4</div>
+
+          <div class="work-comment">Get everything on one side. Subtract (x + 2) from both sides:</div>
+          <div class="work-line calc-line">x + 2 − (x + 2) = x² − 4 − (x + 2)</div>
+          <div class="work-line calc-line">0 = x² − 4 − x − 2</div>
+          <div class="work-line calc-line">0 = x² − x − 6</div>
+          <div class="work-line calc-line">x² − x − 6 = 0</div>
+
+          <div class="work-comment">Factorise. Two numbers that multiply to −6 and add to −1: those are −3 and +2.</div>
+          <div class="work-line calc-line">(x − 3)(x + 2) = 0</div>
+          <div class="work-line calc-line">x − 3 = 0   →   x = 3</div>
+          <div class="work-line calc-line">x + 2 = 0   →   x = −2</div>
+
+          <div class="work-comment"><span class="warn">Two x-values means two (x, y) pairs!</span> Sub each into y = x + 2:</div>
+
+          <div class="work-line calc-line">When x = 3:    y = 3 + 2 = 5</div>
+          <div class="work-line calc-line">When x = −2:   y = −2 + 2 = 0</div>
+
+          <div class="work-comment">Check (3, 5) in (2): y = 3² − 4 = 9 − 4 = 5 ✓</div>
+          <div class="work-comment">Check (−2, 0) in (2): y = (−2)² − 4 = 4 − 4 = 0 ✓</div>
+        </div>
+        <div class="answer-box">(x = 3, y = 5)  and  (x = −2, y = 0)</div>
+      </div>
+    </details>
 
   </div>
 </body>
