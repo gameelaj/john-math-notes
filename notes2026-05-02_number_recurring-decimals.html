@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recurring Decimals → Fractions | John's Math Notes</title>
+  <meta name="description" content="How to convert recurring decimals into exact fractions using algebra — a key IGCSE Edexcel skill.">
+  <meta name="keywords" content="recurring decimals, converting decimals to fractions, exact fractions, algebra, number, IGCSE, Edexcel, 0.333, dot notation, recurring, repeating decimals, Paper 1H, Paper 2H, non-calculator, fractions">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    :root {
+      --bg: #f0f4ff;
+      --card: #ffffff;
+      --border: #dde3f0;
+      --text: #1a1f36;
+      --muted: #5c6585;
+      --accent: #3b5bdb;
+
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+
+      --orange: #ea580c;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+
+      --purple: #9333ea;
+      --purple-bg: #faf5ff;
+      --purple-border: #e9d5ff;
+
+      --pink-bg: #fff0f6;
+      --pink-border: #fcc2d7;
+      --pink: #c2185b;
+
+      --easy-border: #16a34a;
+      --medium-border: #d97706;
+      --hard-border: #dc2626;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 17px;
+      padding: 24px 16px 64px;
+    }
+
+    .container { max-width: 820px; margin: 0 auto; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      padding: 8px 14px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+    .back-link:hover { background: #eef2ff; }
+
+    /* ── TITLE BLOCK ── */
+    .title-block {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b5bdb 60%, #6366f1 100%);
+      color: white;
+      border-radius: 18px;
+      padding: 32px 28px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .title-block::before {
+      content: "0.̄3̄";
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 80px;
+      opacity: 0.12;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: -4px;
+    }
+    .title-block h1 { font-size: 26px; font-weight: 800; margin-bottom: 10px; }
+    .title-meta { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; opacity: 0.85; }
+    .pill {
+      background: rgba(255,255,255,0.18);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* ── SECTION CARDS ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .card h2 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── KEY CONCEPT BOX ── */
+    .concept-box {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+    .concept-box h2 { color: var(--blue); font-size: 16px; font-weight: 800; margin-bottom: 10px; }
+    .concept-box p { font-size: 16px; color: #1e3a8a; margin-bottom: 8px; }
+    .concept-box p:last-child { margin-bottom: 0; }
+
+    /* ── DOT NOTATION EXPLAINER ── */
+    .notation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .notation-card {
+      background: var(--purple-bg);
+      border: 1px solid var(--purple-border);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+    .notation-card .big { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 700; color: var(--purple); margin-bottom: 4px; }
+    .notation-card .small { font-size: 13px; color: var(--muted); }
+
+    /* ── STEP COLORS ── */
+    .step { margin-bottom: 14px; padding: 12px 16px; border-radius: 10px; border-left: 4px solid; }
+    .step-green  { background: var(--green-bg);  border-color: var(--green);  color: #14532d; }
+    .step-blue   { background: var(--blue-bg);   border-color: var(--blue);   color: #1e3a8a; }
+    .step-orange { background: var(--orange-bg); border-color: var(--orange); color: #7c2d12; }
+    .step-purple { background: var(--purple-bg); border-color: var(--purple); color: #581c87; }
+
+    .step-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      opacity: 0.7;
+    }
+    .step-text { font-size: 15px; font-weight: 500; }
+
+    /* ── MATH DISPLAY ── */
+    .math-block {
+      font-family: 'JetBrains Mono', monospace;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 15px;
+      color: var(--text);
+      margin: 8px 0;
+      white-space: pre;
+      overflow-x: auto;
+      line-height: 1.9;
+    }
+
+    /* ── EXAMPLES ── */
+    .example {
+      border-radius: 14px;
+      border: 2px solid;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .example.easy   { border-color: var(--easy-border); }
+    .example.medium { border-color: var(--medium-border); }
+    .example.hard   { border-color: var(--hard-border); }
+
+    .example-header {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .example.easy   .example-header { background: #f0fdf4; color: var(--easy-border); }
+    .example.medium .example-header { background: #fffbeb; color: var(--medium-border); }
+    .example.hard   .example-header { background: #fef2f2; color: var(--hard-border); }
+
+    .example-badge {
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+    .easy   .example-badge { background: var(--easy-border);   color: white; }
+    .medium .example-badge { background: var(--medium-border); color: white; }
+    .hard   .example-badge { background: var(--hard-border);   color: white; }
+
+    .example-body { padding: 20px; background: white; }
+    .example-question { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+
+    .check-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 14px;
+      font-size: 14px;
+      color: #14532d;
+      font-weight: 600;
+    }
+    .check-box span { font-weight: 800; color: var(--green); }
+
+    /* ── COMMON MISTAKES ── */
+    .mistakes-box {
+      background: var(--pink-bg);
+      border: 2px solid var(--pink-border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+    .mistakes-box h2 { color: var(--pink); font-size: 18px; font-weight: 800; margin-bottom: 14px; }
+    .mistake-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      align-items: flex-start;
+    }
+    .mistake-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .mistake-text { font-size: 15px; color: #831843; }
+    .mistake-text strong { color: var(--pink); }
+
+    /* ── QUICK RECAP ── */
+    .recap-box {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border: 2px solid #86efac;
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+    .recap-box h2 { color: var(--green); font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+    .recap-list { list-style: none; }
+    .recap-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #bbf7d0;
+      font-size: 15px;
+      font-weight: 600;
+      color: #14532d;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .recap-list li:last-child { border-bottom: none; }
+    .recap-list li::before { content: "✓"; color: var(--green); font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── PRACTICE QUESTIONS ── */
+    .practice-section h2 { font-size: 22px; font-weight: 800; margin-bottom: 16px; color: var(--text); }
+    .practice-q {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .practice-q summary {
+      padding: 16px 20px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.15s;
+    }
+    .practice-q summary::-webkit-details-marker { display: none; }
+    .practice-q summary:hover { background: #f8fafc; }
+    .q-num {
+      background: var(--accent);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .q-arrow {
+      margin-left: auto;
+      font-size: 18px;
+      color: var(--muted);
+      transition: transform 0.2s;
+    }
+    details[open] .q-arrow { transform: rotate(180deg); }
+    details[open] summary { background: #f8fafc; border-bottom: 1px solid var(--border); }
+    .practice-answer {
+      padding: 20px;
+      background: #fafbff;
+      font-size: 15px;
+    }
+    .difficulty-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      margin-left: 4px;
+    }
+    .diff-easy   { background: #dcfce7; color: var(--easy-border); }
+    .diff-medium { background: #fef9c3; color: #854d0e; }
+    .diff-hard   { background: #fee2e2; color: var(--hard-border); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      body { font-size: 16px; padding: 16px 12px 48px; }
+      .title-block h1 { font-size: 21px; }
+      .title-block::before { font-size: 50px; }
+      .math-block { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- BACK LINK -->
+  <a href="../index.html" class="back-link">← Back to all notes</a>
+
+  <!-- TITLE BLOCK -->
+  <div class="title-block">
+    <h1>Recurring Decimals → Exact Fractions</h1>
+    <div class="title-meta">
+      <span class="pill">📅 2 May 2026</span>
+      <span class="pill">📌 Edexcel IGCSE — Number</span>
+      <span class="pill">📄 Paper 1H &amp; 2H</span>
+      <span class="pill">🔢 Non-Calculator Skill</span>
+    </div>
+  </div>
+
+  <!-- KEY CONCEPT BOX -->
+  <div class="concept-box">
+    <h2>💡 What &amp; Why</h2>
+    <p>A <strong>recurring decimal</strong> is one where a digit (or group of digits) repeats forever — for example 0.333333… or 0.142857142857… These are <strong>rational numbers</strong>, meaning they can always be written as an exact fraction.</p>
+    <p>The trick is to use <strong>algebra</strong>: call the decimal <em>x</em>, multiply to shift the repeating part, then subtract to make the repeating part cancel out. You're left with a simple equation you can solve.</p>
+    <p>This comes up in Paper 1H and 2H. It's worth 2–3 marks and, once you know the method, it's very reliable — you just have to be careful about <em>how many digits are repeating</em>.</p>
+  </div>
+
+  <!-- DOT NOTATION -->
+  <div class="card">
+    <h2>🔵 Dot Notation — Reading the Dots</h2>
+    <p style="font-size:15px; color:var(--muted); margin-bottom:14px;">In IGCSE, a dot above a digit means it repeats. Two dots mark the <em>start and end</em> of a repeating block.</p>
+    <div class="notation-grid">
+      <div class="notation-card">
+        <div class="big">0.3̇</div>
+        <div class="small">0.3333333… (one digit repeats)</div>
+      </div>
+      <div class="notation-card">
+        <div class="big">0.1̇8̇</div>
+        <div class="small">0.181818… (two digits repeat)</div>
+      </div>
+      <div class="notation-card">
+        <div class="big">0.1̇2̄3̇</div>
+        <div class="small">0.123123… (three digits repeat)</div>
+      </div>
+      <div class="notation-card">
+        <div class="big">0.38̇</div>
+        <div class="small">0.3888… (only the 8 repeats, 3 does NOT)</div>
+      </div>
+    </div>
+    <p style="font-size:14px; color:var(--orange); margin-top:14px; font-weight:700;">⚠️ Watch out: 0.38̇ is NOT the same as 0.3̇8̇. In 0.38̇, only the 8 repeats!</p>
+  </div>
+
+  <!-- THE METHOD -->
+  <div class="card">
+    <h2>🟢 The Method — Step by Step</h2>
+
+    <div class="step step-green">
+      <div class="step-label">Step 1 — ACTION</div>
+      <div class="step-text">Let <strong>x</strong> equal the recurring decimal. Write it out with several repeated digits so the pattern is obvious.</div>
+    </div>
+
+    <div class="step step-purple">
+      <div class="step-label">Step 2 — RULE</div>
+      <div class="step-text">Count how many digits are in the <strong>repeating block</strong>. Multiply both sides of your equation by:<br>
+        • <strong>10</strong> if 1 digit repeats<br>
+        • <strong>100</strong> if 2 digits repeat<br>
+        • <strong>1000</strong> if 3 digits repeat<br>
+        This shifts the decimal point to align the repeating parts.</div>
+    </div>
+
+    <div class="step step-blue">
+      <div class="step-label">Step 3 — CALCULATE</div>
+      <div class="step-text">Subtract the smaller equation from the bigger one. The repeating decimal part cancels out, leaving a whole number equation.</div>
+    </div>
+
+    <div class="step step-green">
+      <div class="step-label">Step 4 — ACTION</div>
+      <div class="step-text">Solve for <strong>x</strong> by dividing both sides by the coefficient of <em>x</em>.</div>
+    </div>
+
+    <div class="step step-orange">
+      <div class="step-label">Step 5 — WARNING / CHECK</div>
+      <div class="step-text">Always simplify your fraction to its lowest terms! Find the HCF of numerator and denominator and divide both. Then verify by dividing on a calculator.</div>
+    </div>
+
+    <div class="step step-purple">
+      <div class="step-label">KEY RULE — Non-Recurring Digits</div>
+      <div class="step-text">If some digits before the repeating block do <strong>not</strong> repeat (like 0.38̇), you need TWO multiplications — one to move past the non-recurring digits, one to align the repeating parts. Then subtract.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ EXAMPLES ═══════════════════════════════ -->
+
+  <!-- EASY 1 -->
+  <div class="example easy">
+    <div class="example-header">
+      <span class="example-badge">EASY</span>
+      Example 1 — One digit repeating (pure recurring)
+    </div>
+    <div class="example-body">
+      <div class="example-question">Convert 0.7̇ (= 0.7777…) into a fraction.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Let x equal the decimal</div>
+        <div class="step-text">x = 0.7777777…</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 2 — 1 digit repeats, so multiply by 10</div>
+        <div class="step-text">10 × x = 10 × 0.7777777…</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Write both equations clearly</div>
+        <div class="math-block">  10x = 7.7777777…   ← call this equation (2)
+   1x = 0.7777777…   ← call this equation (1)</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Subtract (1) from (2)</div>
+        <div class="math-block">    (2)   10x = 7.7777777…
+  − (1)    1x = 0.7777777…
+         ─────────────────
+            9x = 7.0000000…
+            9x = 7</div>
+      </div>
+      <div class="step step-green">
+        <div class="step-label">Step 4 — Solve for x</div>
+        <div class="math-block">9x = 7
+
+9x ÷ 9 = 7 ÷ 9
+
+x = 7/9</div>
+      </div>
+      <div class="step step-orange">
+        <div class="step-label">Step 5 — Can we simplify?</div>
+        <div class="step-text">HCF of 7 and 9 is 1 (7 is prime, 9 = 3²). The fraction is already in its simplest form.</div>
+      </div>
+      <div class="check-box">
+        <span>✓ CHECK:</span> 7 ÷ 9 = 0.7777… ✔
+      </div>
+    </div>
+  </div>
+
+  <!-- EASY 2 -->
+  <div class="example easy">
+    <div class="example-header">
+      <span class="example-badge">EASY</span>
+      Example 2 — Two digits repeating (pure recurring)
+    </div>
+    <div class="example-body">
+      <div class="example-question">Convert 0.1̇8̇ (= 0.181818…) into a fraction.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Let x equal the decimal</div>
+        <div class="step-text">x = 0.181818181818…</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 2 — 2 digits repeat (18), so multiply by 100</div>
+        <div class="step-text">100 × x = 100 × 0.181818…</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Write both equations</div>
+        <div class="math-block">  100x = 18.181818…   ← equation (2)
+    1x =  0.181818…   ← equation (1)</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Subtract (1) from (2)</div>
+        <div class="math-block">    (2)  100x = 18.181818…
+  − (1)    1x =  0.181818…
+           ──────────────────
+            99x = 18.000000…
+            99x = 18</div>
+      </div>
+      <div class="step step-green">
+        <div class="step-label">Step 4 — Solve for x</div>
+        <div class="math-block">99x = 18
+
+99x ÷ 99 = 18 ÷ 99
+
+x = 18/99</div>
+      </div>
+      <div class="step step-orange">
+        <div class="step-label">Step 5 — Simplify the fraction</div>
+        <div class="math-block">Find HCF of 18 and 99.
+
+18 = 2 × 3 × 3
+99 = 3 × 3 × 11
+
+HCF = 9
+
+18 ÷ 9 = 2
+99 ÷ 9 = 11
+
+x = 2/11</div>
+      </div>
+      <div class="check-box">
+        <span>✓ CHECK:</span> 2 ÷ 11 = 0.181818… ✔
+      </div>
+    </div>
+  </div>
+
+  <!-- EASY 3 -->
+  <div class="example easy">
+    <div class="example-header">
+      <span class="example-badge">EASY</span>
+      Example 3 — Three digits repeating
+    </div>
+    <div class="example-body">
+      <div class="example-question">Convert 0.1̇2̇3̇ (= 0.123123123…) into a fraction.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Let x equal the decimal</div>
+        <div class="step-text">x = 0.123123123…</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 2 — 3 digits repeat (123), so multiply by 1000</div>
+        <div class="step-text">1000 × x = 1000 × 0.123123123…</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Write both equations</div>
+        <div class="math-block">  1000x = 123.123123…   ← equation (2)
+     1x =   0.123123…   ← equation (1)</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Subtract (1) from (2)</div>
+        <div class="math-block">    (2)  1000x = 123.123123…
+  − (1)     1x =   0.123123…
+            ──────────────────
+             999x = 123.000000…
+             999x = 123</div>
+      </div>
+      <div class="step step-green">
+        <div class="step-label">Step 4 — Solve for x</div>
+        <div class="math-block">999x = 123
+
+999x ÷ 999 = 123 ÷ 999
+
+x = 123/999</div>
+      </div>
+      <div class="step step-orange">
+        <div class="step-label">Step 5 — Simplify the fraction</div>
+        <div class="math-block">Find HCF of 123 and 999.
+
+123 = 3 × 41
+999 = 3 × 333 = 3 × 3 × 111 = 3 × 3 × 3 × 37
+
+HCF = 3
+
+123 ÷ 3 = 41
+999 ÷ 3 = 333
+
+x = 41/333</div>
+      </div>
+      <div class="check-box">
+        <span>✓ CHECK:</span> 41 ÷ 333 = 0.123123… ✔
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIUM 1 -->
+  <div class="example medium">
+    <div class="example-header">
+      <span class="example-badge">MEDIUM</span>
+      Example 4 — Non-recurring digit before the repeat (e.g. 0.38̇)
+    </div>
+    <div class="example-body">
+      <div class="example-question">Convert 0.38̇ (= 0.3888…) into a fraction. Note: only the 8 repeats, not the 3!</div>
+
+      <div class="step step-purple">
+        <div class="step-label">KEY RULE — Why this is different</div>
+        <div class="step-text">Because the 3 before the 8 does NOT repeat, we can't just multiply by 10 and subtract. We need to use TWO equations so that when we subtract, the repeating 8s cancel perfectly.</div>
+      </div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Let x equal the decimal</div>
+        <div class="step-text">x = 0.38888888…</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 2 — Multiply by 100 (to shift past the non-recurring AND the recurring digit)</div>
+        <div class="math-block">100 × x = 100 × 0.38888…
+
+100x = 38.8888…    ← equation (2)</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Multiply by 10 (to shift to just before the recurring digit begins)</div>
+        <div class="math-block">10 × x = 10 × 0.38888…
+
+10x = 3.8888…    ← equation (1)</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Why these two? Look at the .8888… part</div>
+        <div class="step-text">In both equations, the decimal part is .8888… — so when we subtract, it cancels!</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 4 — Subtract (1) from (2)</div>
+        <div class="math-block">    (2)  100x = 38.8888…
+  − (1)   10x =  3.8888…
+          ───────────────
+            90x = 35.0000…
+            90x = 35</div>
+      </div>
+      <div class="step step-green">
+        <div class="step-label">Step 5 — Solve for x</div>
+        <div class="math-block">90x = 35
+
+90x ÷ 90 = 35 ÷ 90
+
+x = 35/90</div>
+      </div>
+      <div class="step step-orange">
+        <div class="step-label">Step 6 — Simplify the fraction</div>
+        <div class="math-block">Find HCF of 35 and 90.
+
+35 = 5 × 7
+90 = 5 × 18 = 5 × 2 × 9
+
+HCF = 5
+
+35 ÷ 5 = 7
+90 ÷ 5 = 18
+
+x = 7/18</div>
+      </div>
+      <div class="check-box">
+        <span>✓ CHECK:</span> 7 ÷ 18 = 0.3888… ✔
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIUM 2 -->
+  <div class="example medium">
+    <div class="example-header">
+      <span class="example-badge">MEDIUM</span>
+      Example 5 — Two non-recurring digits before the repeat (e.g. 0.41̇6̇)
+    </div>
+    <div class="example-body">
+      <div class="example-question">Convert 0.41̇6̇ (= 0.41666…) into a fraction. The 4 and 1 do NOT repeat; only the 6 repeats.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Let x equal the decimal</div>
+        <div class="step-text">x = 0.416666666…</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 2 — Plan: 2 non-recurring digits, 1 recurring digit</div>
+        <div class="step-text">Multiply by 1000 (to get past 2 non-recurring + 1 recurring = 3 digits total) and by 100 (to get past just the 2 non-recurring digits). Then subtract.</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Multiply by 1000</div>
+        <div class="math-block">1000x = 416.6666…    ← equation (2)</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 4 — Multiply by 100</div>
+        <div class="math-block">100x = 41.6666…    ← equation (1)</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 5 — Subtract (1) from (2)</div>
+        <div class="math-block">    (2)  1000x = 416.6666…
+  − (1)   100x =  41.6666…
+           ────────────────
+             900x = 375.0000…
+             900x = 375</div>
+      </div>
+      <div class="step step-green">
+        <div class="step-label">Step 6 — Solve for x</div>
+        <div class="math-block">900x = 375
+
+900x ÷ 900 = 375 ÷ 900
+
+x = 375/900</div>
+      </div>
+      <div class="step step-orange">
+        <div class="step-label">Step 7 — Simplify</div>
+        <div class="math-block">Find HCF of 375 and 900.
+
+375 = 3 × 125 = 3 × 5 × 5 × 5
+900 = 4 × 225 = 4 × 9 × 25 = 2² × 3² × 5²
+
+HCF = 3 × 25 = 75
+
+375 ÷ 75 = 5
+900 ÷ 75 = 12
+
+x = 5/12</div>
+      </div>
+      <div class="check-box">
+        <span>✓ CHECK:</span> 5 ÷ 12 = 0.41666… ✔
+      </div>
+    </div>
+  </div>
+
+  <!-- HARD -->
+  <div class="example hard">
+    <div class="example-header">
+      <span class="example-badge">HARD</span>
+      Example 6 — Exam-style: prove that 0.4̇5̄6̇ = 152/333
+    </div>
+    <div class="example-body">
+      <div class="example-question">Show that 0.4̇5̄6̇ = 0.456456456… can be written as the fraction 152/333.</div>
+
+      <div class="step step-green">
+        <div class="step-label">Step 1 — Write out the decimal clearly</div>
+        <div class="step-text">x = 0.456456456456…<br>The repeating block is 456 — three digits repeat. There are no non-recurring digits before the block.</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Step 2 — 3 digits repeat, so multiply by 1000</div>
+        <div class="step-text">1000 × x = 1000 × 0.456456456…</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 3 — Write both equations</div>
+        <div class="math-block">  1000x = 456.456456…   ← equation (2)
+     1x =   0.456456…   ← equation (1)</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Step 4 — Subtract (1) from (2)</div>
+        <div class="math-block">    (2)  1000x = 456.456456…
+  − (1)     1x =   0.456456…
+            ──────────────────
+             999x = 456.000000…
+             999x = 456</div>
+      </div>
+      <div class="step step-green">
+        <div class="step-label">Step 5 — Solve for x</div>
+        <div class="math-block">999x = 456
+
+999x ÷ 999 = 456 ÷ 999
+
+x = 456/999</div>
+      </div>
+      <div class="step step-orange">
+        <div class="step-label">Step 6 — Simplify to check it matches 152/333</div>
+        <div class="math-block">Find HCF of 456 and 999.
+
+456 = 2³ × 3 × 19
+999 = 3³ × 37
+
+HCF = 3
+
+456 ÷ 3 = 152
+999 ÷ 3 = 333
+
+x = 152/333  ✔</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Finishing line — write a clear conclusion</div>
+        <div class="step-text">Since 456/999 = 152/333, we have shown that 0.4̇5̄6̇ = 152/333. ∎</div>
+      </div>
+      <div class="check-box">
+        <span>✓ CHECK:</span> 152 ÷ 333 = 0.456456… ✔
+      </div>
+    </div>
+  </div>
+
+  <!-- HARD 2 -->
+  <div class="example hard">
+    <div class="example-header">
+      <span class="example-badge">HARD</span>
+      Example 7 — Exam-style multi-step: show 0.8̇3̇ + 0.1̇6̇ = 1
+    </div>
+    <div class="example-body">
+      <div class="example-question">Convert 0.8̇3̇ and 0.1̇6̇ individually into fractions, then add them to show their sum equals 1.</div>
+
+      <div class="step step-purple">
+        <div class="step-label">Part A — Convert 0.8̇3̇ (= 0.838383…)</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Let p = 0.838383…, two digits repeat → multiply by 100</div>
+        <div class="math-block">  100p = 83.838383…   ← equation (2)
+    1p =  0.838383…   ← equation (1)
+
+    (2)  100p = 83.838383…
+  − (1)    1p =  0.838383…
+           ──────────────────
+            99p = 83
+
+p = 83/99</div>
+      </div>
+      <div class="step step-purple">
+        <div class="step-label">Simplify 83/99</div>
+        <div class="math-block">83 is prime.
+99 = 9 × 11 = 3² × 11.
+83 is not divisible by 3 or 11.
+
+HCF = 1 → already in simplest form.
+
+p = 83/99</div>
+      </div>
+
+      <div class="step step-purple">
+        <div class="step-label">Part B — Convert 0.1̇6̇ (= 0.161616…)</div>
+      </div>
+      <div class="step step-blue">
+        <div class="step-label">Let q = 0.161616…, two digits repeat → multiply by 100</div>
+        <div class="math-block">  100q = 16.161616…   ← equation (2)
+    1q =  0.161616…   ← equation (1)
+
+    (2)  100q = 16.161616…
+  − (1)    1q =  0.161616…
+           ──────────────────
+            99q = 16
+
+q = 16/99</div>
+      </div>
+
+      <div class="step step-green">
+        <div class="step-label">Part C — Add the two fractions</div>
+        <div class="math-block">p + q = 83/99 + 16/99
+
+      = (83 + 16) / 99
+
+      = 99/99
+
+      = 1  ✔</div>
+      </div>
+      <div class="check-box">
+        <span>✓ SHOWN:</span> 0.8̇3̇ + 0.1̇6̇ = 83/99 + 16/99 = 99/99 = 1 ✔
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMON MISTAKES -->
+  <div class="mistakes-box">
+    <h2>🚨 Common Mistakes — Watch Out, John!</h2>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Multiplying by the wrong power of 10:</strong> Count the digits in the repeating block carefully. If 2 digits repeat, multiply by 100, not 10. Getting this wrong means the .888… parts don't line up and don't cancel.</div>
+    </div>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Treating 0.38̇ like 0.3̇8̇:</strong> In 0.38̇, only the 8 repeats. The 3 is a fixed digit. You need TWO multiplications (×100 and ×10). A very common exam trap.</div>
+    </div>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Forgetting to simplify:</strong> 18/99 is correct but not simplified — the answer should be 2/11. Always find the HCF and divide both top and bottom.</div>
+    </div>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Subtracting the wrong way round:</strong> Always subtract the SMALLER equation from the BIGGER one. Doing it the other way gives you a negative number for 99x, which causes sign errors.</div>
+    </div>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Writing x = 9 instead of 9x = 7:</strong> After subtracting, the left-hand side is still <em>9x</em>, not <em>x</em>. You still have to divide. Don't jump to the answer.</div>
+    </div>
+
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div class="mistake-text"><strong>Confusing 0.9̇ ≠ 1:</strong> Actually 0.9̇ = 0.9999… = 1 exactly (not approximately). This is a famous mathematical fact. Using the method: 10x − x = 9x = 9, so x = 1. Don't be surprised if this comes up!</div>
+    </div>
+  </div>
+
+  <!-- QUICK RECAP -->
+  <div class="recap-box">
+    <h2>⚡ Quick Recap — 30 Second Review</h2>
+    <ul class="recap-list">
+      <li>Let x = the decimal. Write out enough repeated digits so the pattern is visible.</li>
+      <li>Multiply by 10ⁿ where n = number of digits in the repeating block (10, 100, or 1000).</li>
+      <li>Subtract the smaller equation from the bigger. The repeating part cancels out.</li>
+      <li>Solve: divide both sides by the coefficient of x.</li>
+      <li>If there are non-recurring digits before the repeat, use TWO multiplications then subtract them.</li>
+      <li>Always simplify the fraction — find HCF and divide numerator and denominator by it.</li>
+    </ul>
+  </div>
+
+  <!-- PRACTICE QUESTIONS -->
+  <div class="practice-section card">
+    <h2>✏️ Practice Questions</h2>
+    <p style="color:var(--muted); font-size:14px; margin-bottom:18px;">Click each question to reveal the full worked answer.</p>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">1</span>
+        Convert 0.4̇ (= 0.4444…) into a fraction.
+        <span class="difficulty-tag diff-easy">Easy</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Let x = 0.4444…
+
+1 digit repeats → multiply by 10
+
+10x = 4.4444…    ← (2)
+ 1x = 0.4444…    ← (1)
+
+    (2)  10x = 4.4444…
+  − (1)   1x = 0.4444…
+          ─────────────
+           9x = 4.0000…
+           9x = 4
+
+9x ÷ 9 = 4 ÷ 9
+
+x = 4/9
+
+Simplify: HCF(4, 9) = 1 → already simplest form.
+
+Answer: 4/9</div>
+        <div class="check-box"><span>✓ CHECK:</span> 4 ÷ 9 = 0.4444… ✔</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">2</span>
+        Convert 0.6̇ (= 0.6666…) into a fraction.
+        <span class="difficulty-tag diff-easy">Easy</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Let x = 0.6666…
+
+1 digit repeats → multiply by 10
+
+10x = 6.6666…    ← (2)
+ 1x = 0.6666…    ← (1)
+
+    (2)  10x = 6.6666…
+  − (1)   1x = 0.6666…
+          ─────────────
+           9x = 6.0000…
+           9x = 6
+
+9x ÷ 9 = 6 ÷ 9
+
+x = 6/9
+
+Simplify: HCF(6, 9) = 3
+6 ÷ 3 = 2
+9 ÷ 3 = 3
+
+x = 2/3
+
+Answer: 2/3</div>
+        <div class="check-box"><span>✓ CHECK:</span> 2 ÷ 3 = 0.6666… ✔</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">3</span>
+        Convert 0.2̇7̇ (= 0.272727…) into a fraction.
+        <span class="difficulty-tag diff-easy">Easy</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Let x = 0.272727…
+
+2 digits repeat (27) → multiply by 100
+
+100x = 27.272727…    ← (2)
+  1x =  0.272727…    ← (1)
+
+    (2)  100x = 27.272727…
+  − (1)    1x =  0.272727…
+           ──────────────────
+            99x = 27.000000…
+            99x = 27
+
+99x ÷ 99 = 27 ÷ 99
+
+x = 27/99
+
+Simplify: HCF(27, 99)?
+27 = 3³
+99 = 3² × 11
+HCF = 9
+
+27 ÷ 9 = 3
+99 ÷ 9 = 11
+
+x = 3/11
+
+Answer: 3/11</div>
+        <div class="check-box"><span>✓ CHECK:</span> 3 ÷ 11 = 0.272727… ✔</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">4</span>
+        Convert 0.1̇ (= 0.1111…) into a fraction.
+        <span class="difficulty-tag diff-easy">Easy</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Let x = 0.1111…
+
+1 digit repeats → multiply by 10
+
+10x = 1.1111…    ← (2)
+ 1x = 0.1111…    ← (1)
+
+    (2)  10x = 1.1111…
+  − (1)   1x = 0.1111…
+          ─────────────
+           9x = 1.0000…
+           9x = 1
+
+9x ÷ 9 = 1 ÷ 9
+
+x = 1/9
+
+Answer: 1/9
+
+Note: 1/9 = 0.1̇, 2/9 = 0.2̇, 3/9 = 1/3 = 0.3̇ … 
+This is a great pattern to remember!</div>
+        <div class="check-box"><span>✓ CHECK:</span> 1 ÷ 9 = 0.1111… ✔</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">5</span>
+        Convert 0.16̇ (= 0.1666…) into a fraction. (Only the 6 repeats!)
+        <span class="difficulty-tag diff-medium">Medium</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Let x = 0.16666…
+
+There is 1 non-recurring digit (1) before the repeating digit (6).
+
+Multiply by 100 (to move past both digits):
+100x = 16.6666…    ← (2)
+
+Multiply by 10 (to move past just the non-recurring digit):
+10x = 1.6666…     ← (1)
+
+Now both have .6666… as the decimal part → they cancel!
+
+    (2)  100x = 16.6666…
+  − (1)   10x =  1.6666…
+          ──────────────────
+            90x = 15.0000…
+            90x = 15
+
+90x ÷ 90 = 15 ÷ 90
+
+x = 15/90
+
+Simplify: HCF(15, 90) = 15
+15 ÷ 15 = 1
+90 ÷ 15 = 6
+
+x = 1/6
+
+Answer: 1/6</div>
+        <div class="check-box"><span>✓ CHECK:</span> 1 ÷ 6 = 0.16666… ✔</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">6</span>
+        Convert 0.21̇3̇ (= 0.21313131…) into a fraction. (Only 13 repeats!)
+        <span class="difficulty-tag diff-medium">Medium</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Let x = 0.21313131…
+
+Non-recurring digit: 2 (1 digit)
+Repeating block: 13 (2 digits)
+Total digits to consider: 1 + 2 = 3
+
+Multiply by 1000 (shift past 3 digits):
+1000x = 213.13131…    ← (2)
+
+Multiply by 10 (shift past 1 non-recurring digit):
+10x = 2.13131…        ← (1)
+
+Both have .13131… → cancel!
+
+    (2)  1000x = 213.13131…
+  − (1)    10x =   2.13131…
+           ──────────────────
+             990x = 211.00000…
+             990x = 211
+
+990x ÷ 990 = 211 ÷ 990
+
+x = 211/990
+
+Simplify: HCF(211, 990)?
+211 is prime (not divisible by 2, 3, 5, 7, 11, 13 — check: √211 ≈ 14.5)
+990 = 2 × 5 × 9 × 11
+
+HCF = 1 → already in simplest form.
+
+Answer: 211/990</div>
+        <div class="check-box"><span>✓ CHECK:</span> 211 ÷ 990 = 0.213131… ✔</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">7</span>
+        Show that 0.9̇ = 1 exactly (not approximately).
+        <span class="difficulty-tag diff-medium">Medium</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Let x = 0.9999…
+
+1 digit repeats → multiply by 10
+
+10x = 9.9999…    ← (2)
+ 1x = 0.9999…    ← (1)
+
+    (2)  10x = 9.9999…
+  − (1)   1x = 0.9999…
+          ─────────────
+           9x = 9.0000…
+           9x = 9
+
+9x ÷ 9 = 9 ÷ 9
+
+x = 9/9
+
+x = 1
+
+∴ 0.9̇ = 1  (exactly, not approximately!)</div>
+        <p style="color:var(--muted); font-size:14px; margin-top:10px;">This surprises everyone at first! But the algebra is correct. 0.9̇ and 1 are two ways of writing the same number — just like 1/2 and 2/4.</p>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">8</span>
+        Prove that 0.5̇7̇ − 0.3̇ can be written as 24/99. [Exam-style]
+        <span class="difficulty-tag diff-hard">Hard</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Part A: Convert 0.5̇7̇ (= 0.575757…)
+
+Let p = 0.575757…
+2 digits repeat → multiply by 100
+
+100p = 57.575757…    ← (2)
+  1p =  0.575757…    ← (1)
+
+    (2)  100p = 57.575757…
+  − (1)    1p =  0.575757…
+           ──────────────────
+            99p = 57
+
+p = 57/99
+
+────────────────────────────────
+
+Part B: Convert 0.3̇ (= 0.3333…)
+
+Let q = 0.3333…
+1 digit repeats → multiply by 10
+
+10q = 3.3333…    ← (2)
+ 1q = 0.3333…    ← (1)
+
+    (2)  10q = 3.3333…
+  − (1)   1q = 0.3333…
+          ─────────────
+           9q = 3
+
+q = 3/9
+
+Simplify: HCF(3, 9) = 3
+q = 1/3
+
+Write with denominator 99 for subtraction:
+q = 1/3 = 33/99
+
+────────────────────────────────
+
+Part C: Subtract
+
+p − q = 57/99 − 33/99
+
+      = (57 − 33) / 99
+
+      = 24/99
+
+∴ 0.5̇7̇ − 0.3̇ = 24/99  ∎
+
+Check if 24/99 simplifies: HCF(24, 99)?
+24 = 2³ × 3
+99 = 3² × 11
+HCF = 3 → 24/99 = 8/33
+
+(The question only asked us to show 24/99, so stop there.)</div>
+        <div class="check-box"><span>✓ CHECK:</span> 0.5757… − 0.3333… = 0.2424… and 24 ÷ 99 = 0.2424… ✔</div>
+      </div>
+    </details>
+
+    <details class="practice-q">
+      <summary>
+        <span class="q-num">9</span>
+        Write 0.3̇45̇ (= 0.345345345…) as a fraction in its simplest form.
+        <span class="difficulty-tag diff-hard">Hard</span>
+        <span class="q-arrow">▾</span>
+      </summary>
+      <div class="practice-answer">
+        <div class="math-block">Let x = 0.345345345…
+
+3 digits repeat (345) → multiply by 1000
+
+1000x = 345.345345…    ← (2)
+   1x =   0.345345…    ← (1)
+
+    (2)  1000x = 345.345345…
+  − (1)     1x =   0.345345…
+            ──────────────────
+             999x = 345.000000…
+             999x = 345
+
+999x ÷ 999 = 345 ÷ 999
+
+x = 345/999
+
+Simplify: HCF(345, 999)?
+345 = 3 × 5 × 23
+999 = 3³ × 37
+
+HCF = 3
+
+345 ÷ 3 = 115
+999 ÷ 3 = 333
+
+x = 115/333
+
+Check if further simplifiable:
+115 = 5 × 23
+333 = 3² × 37
+No common factors.
+
+Answer: 115/333</div>
+        <div class="check-box"><span>✓ CHECK:</span> 115 ÷ 333 = 0.345345… ✔</div>
+      </div>
+    </details>
+
+  </div><!-- /practice-section -->
+
+</div><!-- /container -->
+</body>
+</html>
